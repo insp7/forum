@@ -1,0 +1,13 @@
+.btn-success-mine.btn-outline {
+    color: #007bff;
+}
+
+.btn-success-mine:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-success-mine{
+	color: #007bff;
+	border-color: #007bff;
+}

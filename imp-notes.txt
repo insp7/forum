@@ -18,4 +18,4 @@ For json and ajax :
 https://www.youtube.com/watch?v=rJesac0_Ftw
 
 multipart/form-data vs x-www-form-urlencoded : https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
-
+https://stackoverflow.com/questions/37521172/is-javascript-location-href-call-is-asynchronous

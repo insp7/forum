@@ -1,21 +1,22 @@
+<!-- Pending to Implement toastr on register form -->
 <!DOCTYPE html>
 <html lang="en">
 
 <?php 
-    require_once("classes/Users.php");
+    // require_once("classes/Users.php");
 
-    if(isset($_POST['signup'])){
-        $first_name = $_POST['firstname'];
-        $last_name = $_POST['lastname'];
-        $user_name = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $user_branch = $_POST['user_branch'];
-        $user_dob = $_POST['user_dob'];
+    // if(isset($_POST['register'])) { 
+    //     $first_name = $_POST['firstname'];
+    //     $last_name = $_POST['lastname'];
+    //     $user_name = $_POST['username'];
+    //     $email = $_POST['email'];
+    //     $password = $_POST['password'];
+    //     $user_branch = $_POST['user_branch'];
+    //     $user_dob = $_POST['user_dob'];
 
-        $users = new Users();
-        $users->addUser($first_name, $last_name, $user_name, $email, $password, $user_dob, $user_branch);
-    } 
+    //     $users = new Users();
+    //     $users->addUser($first_name, $last_name, $user_name, $email, $password, $user_dob, $user_branch);
+    // } 
 ?>
 
 <!-- HEADER -->
@@ -40,6 +41,10 @@
 
     <!-- Custom Fonts -->
     <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to Toastr.css -->
+    <link rel="stylesheet" href="assets/convertedFromCDN/css/toastr.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,8 +99,8 @@
                                 <div class="form-group">
                                     <p> 
                                         &emsp;Already A member?&ensp;
-                                        <a href="login.php" name="login" class="btn btn-outline btn-primary"><span class="fa fa-sign-in"></span> Login</a>
-                                        <button type="submit" name="signup" class="btn btn-outline btn-success"><span class="glyphicon glyphicon-user"></span> Sign Up</button>
+                                        <a href="login.php" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</a>
+                                        <button name="register" id="register" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> Sign Up</button>
                                     </p>
                                 </div>
                             </fieldset>
@@ -126,7 +131,11 @@
     <!-- Remember to remove this, bcoz its useless :P  -->
     <!-- Include Editor JS files. -->
     <script type="text/javascript" src="assets/convertedFromCDN/js/froala_editor.pkgd.min.js"></script>
-
+    
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to toastr.js -->
+    <script type="text/javascript" src="assets/convertedFromCDN/js/toastr.min.js"></script>
+    
     <!-- My Script -->
     <script src="assets/js/scripts.js"></script>
 

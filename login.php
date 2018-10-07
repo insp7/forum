@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start(); // Session not started so start the session
+    } 
+
     require_once("classes/Login.php");
 
     if(isset($_POST['login-email'])) {
@@ -48,6 +52,10 @@
 
     <!-- Custom Fonts -->
     <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to Toastr.css -->
+    <link rel="stylesheet" href="assets/convertedFromCDN/css/toastr.min.css">
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/myStyles.css">
@@ -99,7 +107,7 @@
         </div>
     </div>
     <?php
-        session_start();
+        // FOR TESTING PURPOSES
         print_r($_SESSION);
     ?>
 
@@ -115,6 +123,10 @@
         
     <!-- Custom Theme JavaScript -->
     <script src="assets/dist/js/sb-admin-2.js"></script>
+
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to toastr.js -->
+    <script type="text/javascript" src="assets/convertedFromCDN/js/toastr.min.js"></script>
 
     <!-- My Script -->
     <script src="assets/js/scripts.js"></script>

@@ -20,7 +20,7 @@
 		}
 
 		public function getAllPosts() {
-			$sql = "SELECT * FROM posts";
+			$sql = "SELECT * FROM posts WHERE is_deleted = 0"; // Select all the posts which are not set to be deleted
 			$result_set = $this->connection->query($sql);
 			if($this->connection->errno) {
 				echo "Error: ".$this->connection->errno;
@@ -44,6 +44,23 @@
 				return true;
 			else
 				return false;
+		}
+
+		/*  Function to get all post details specified by the '$columns' parameter using the $post_id
+			Ex. IF $columns = "post_content", $post_id = 1 THEN
+				$sql = "SELECT post_content FROM posts WHERE post_id = 1"
+
+			returns a single row with 'n' number of columns specified in the $columns parameter 
+			OR returns null if no such row exists
+		*/
+		public function getPostById($post_id, $columns) {
+			$sql = "SELECT $columns FROM posts WHERE post_id = $post_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->errno) {
+				die("Error while getting user details : ".$this->connection->errno);
+			}
+			return $result_set;
 		}
 	}
 ?>

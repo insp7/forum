@@ -5,7 +5,7 @@
     
     roles(role_id, role_name)
 
-    posts(post_id, post_content, post_image, post_user_id, created_at, deleted_at, deleted, updated_at, parent_post_id, post_points, post_points_dirty_bit)
+    posts(post_id, post_content, post_image, post_user_id, created_at, deleted_at, deleted, updated_at, post_points)
 
     post_votes(post_votes_id, post_id, user_id, vote)
 

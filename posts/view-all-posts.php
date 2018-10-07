@@ -29,32 +29,33 @@
                 <!-- ***************** START FROM HERE ***************** -->
                 <?php
                     require_once("../classes/Posts.php");
+                    require_once("../classes/Users.php");
 
                     $posts = new Posts();
                     $result_set = $posts->getAllPosts();
 
+                    $users = new Users();
                     while($row = mysqli_fetch_assoc($result_set)) {
                         extract($row);
-
-                        $sql = "SELECT first_name, last_name, user_name FROM users WHERE user_id = '$post_user_id'";
-                        $post_user_name = $database->getConnection()->query($sql);
-                        extract(mysqli_fetch_assoc($post_user_name));
-
-                        echo '<div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <i class="fa fa-user" aria-hidden="true"> '.$user_name.'</i> 
-                                    <i class="fa fa-clock-o" aria-hidden="true" style="float: right;"> Posted on '.$created_at.'</i> 
-                                </div>
-                                <div class="panel-body">
-                                    '.$post_content.'
-                                </div>
-                                <div class="panel-footer">
-                                    <a href="comments.php?post_id='.$post_id.'&post_user_id='.$post_user_id.'" class="btn btn-outline btn-success-mine btn-sm" style="font-size: 13px;">Post Your Answer</a>
-                                    <a href="" class="btn btn-outline btn-success btn-sm" style="font-size: 13px;">Upvote Post</a>
-                                    <i class="fa fa-thumbs-up fa-2x" aria-hidden="true" style="float: right; color: #007bff;  letter-spacing:.25px;"> '.$post_points.'</i>
-                                </div>
-                            </div>';
-                    }
+                        $resultant_row = $users->getUserDetailsById($post_user_id, "user_name");
+                        extract(mysqli_fetch_assoc($resultant_row));
+                ?>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <i class="fa fa-user" aria-hidden="true"></i> <div style="font-size: 16px; font-family: 'Cantora One'; display: inline;"><?php echo $user_name; ?></div> 
+                                <i class="fa fa-clock-o" aria-hidden="true" style="float: right;"><div style="font-size: 16px; font-family: 'Cantora One'; display: inline;"> Posted on <?php echo $created_at; ?></div></i> 
+                            </div>
+                            <div class="panel-body">
+                                <?php echo $post_content; ?>
+                            </div>
+                            <div class="panel-footer">
+                                <?php echo '<a href="comments.php?post_id='.$post_id.'&post_user_id='.$post_user_id.'" class="btn btn-outline btn-success-mine btn-sm" style="font-size: 13px;">Post Your Answer</a>'; ?>
+                                <a href="" class="btn btn-outline btn-success btn-sm" style="font-size: 13px;">Upvote Post</a>
+                                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true" style="float: right; color: #007bff;  letter-spacing:.25px;"> <?php echo $post_points; ?></i>
+                            </div>
+                        </div>
+                <?php 
+                    } // End of while loop
                 ?>
                 
             </div>

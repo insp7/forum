@@ -1,3 +1,4 @@
+// var registered;
 function loginButtonClicked(event) {
     /*-------------------- CODE FOR IF LOGIN BUTTON IS CLICKED --------------------*/
 	event.preventDefault();// Prevent the default action
@@ -49,6 +50,7 @@ function authenticateInfo(email, password) {
 function postQuestionClicked(event) {
     /*-------------------- CODE FOR IF POST_QUESTION BUTTON IS CLICKED --------------------*/
 	event.preventDefault();
+
     var questionTags = document.getElementById("question_tags").value;
 	var askedQuestion = document.getElementById("askedQuestion").value;
 	
@@ -69,7 +71,7 @@ function postQuestion(askedQuestion, questionTags){
 		// RESPONSE
 		if(this.responseText === "true") {
 			document.getElementById("post-question-form").submit();
-		}else if(this.responseText === "false") {
+		} else if(this.responseText === "false") {
 			document.getElementById("askedQuestion-error").innerHTML = "Something Wrong happened!";
 		}		
 	};
@@ -105,6 +107,58 @@ function logoutButtonClicked(event) {
     //https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("manage=logout");
+}
+
+function register(){
+    /*-------------------- CODE FOR IF REGISTER BUTTON IS CLICKED --------------------*/
+    
+    // Take the user data
+    var firstname = document.getElementById("firstname").value;
+    var lastname = document.getElementById("lastname").value;
+    var username = document.getElementById("username").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var user_branch = document.getElementById("user_branch").value;
+    var user_dob = document.getElementById("user_dob").value;
+
+    /*-------------------- CODE TO REGISTER(create) NEW USER USING POST AJAX WITHOUT JQUERY --------------------*/
+    var myRequest = new XMLHttpRequest(); //XMLHttpRequest
+
+    myRequest.onload = function() { // RESPONSE
+        // set blank
+        document.getElementById("firstname").value = "";
+        document.getElementById("lastname").value = "";
+        document.getElementById("username").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("confirm_password").value = "";
+        document.getElementById("user_branch").value = "";
+        document.getElementById("user_dob").value = "";
+
+        /* ------- SET TOASTR OPTIONS ------- */
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "4000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success("Get Started, ain't no need to wait!", "User Created"); // Show toastr
+    };
+
+    myRequest.open("POST", "manage-ajax.php", true); 
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
 }
 
 /************************************************************************************************/
@@ -214,11 +268,55 @@ $(document).ready(function() {
             user_dob: {
                 required: "Please enter a <em>valid<em> date."
             }
-    	}
+    	},
+        submitHandler: function(form){
+            register();
+        }
     });
     /*-------------------------------- END OF REGISTER FORM VALIDATIONS --------------------------------*/
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('#post_comment').on("click", function(event) { // CODE FOR WHEN THE USER CLICKS POST COMMENT
+        event.preventDefault();
+
+        var comment_content = $('#comment_content').val(); // get the comment content
+        document.getElementById("comment_content").value = ""; // Set to "" onclick
+
+        // To access the url variables (without using php)
+        var parts = window.location.search.substr(1).split("&");
+        var $_GET = {}; // Store in the $_GET array
+        for (var i = 0; i < parts.length; i++) {
+            var temp = parts[i].split("=");
+            $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+        }
+
+        function postComment(post_id, comment_content) {
+            /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
+            var myRequest = new XMLHttpRequest();
+
+            function addComment(user_name, comment_created_at) {
+                var div = document.createElement('div');
+                div.innerHTML = '<div class="well well-sm"><div style="font-size: 16px; font-family: \'Cantora One\';">'+user_name+'</div><div style="font-size: 12px;">answered on '+comment_created_at+'</div><h4></h4><p>'+comment_content+'</p></div>';
+                document.getElementById('comment_posted_using_ajax').append(div);
+            }
+
+            myRequest.onload = function() {
+                // RESPONSE
+                var response = this.responseText.split("~");
+                if(response[0] === "true") {
+                    addComment(response[1], response[2]);    
+                } else {
+                    alert(this.responseText);
+                }
+            };
+
+            myRequest.open("POST", "../manage-ajax.php", true); 
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
+        }
+
+        postComment($_GET['post_id'], comment_content);      
+    }); // End of posting comment 
+
 });
 
 

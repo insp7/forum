@@ -1,15 +1,15 @@
 <?php 
 	require_once("Database.php");
 
-	class Users{
+	class Users {
 		private $connection;
 
-		public function __construct(){
+		public function __construct() {
 			global $database;
 			$this->connection = $database->getConnection();
 		}
 
-		public function getAllUsers(){
+		public function getAllUsers() {
 			$sql = "SELECT * FROM users";
 			$result_set = $this->connection->query($sql);
 			if($this->connection->errno){
@@ -31,10 +31,27 @@
 			$preparedStatement->execute();
 			$preparedStatement->store_result();
 
-			if($this->connection->errno){
+			if($this->connection->errno) {
 				echo "Error :".$this->connection->errno;
 				return;
 			}
 		}
-	}
+
+		/*  Function to get all user details specified by the '$columns' parameter using the $user_id
+			Ex. IF $columns = "first_name, last_name, user_name", $user_id = 1 THEN
+				$sql = "SELECT first_name, last_name, user_name FROM users WHERE user_id = 1"
+
+			returns a single row with 'n' number of columns specified in the $columns parameter 
+			OR returns null if no such row exists
+		*/
+		public function getUserDetailsById($user_id, $columns) {
+			$sql = "SELECT $columns FROM users WHERE user_id = $user_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->errno) {
+				die("Error while getting user details : ".$this->connection->errno);
+			}
+			return $result_set; 
+		}
+	}	
 ?>

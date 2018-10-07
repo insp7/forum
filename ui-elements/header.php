@@ -39,6 +39,9 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/myStyles.css">
+    
+    <!-- Cantora One Font -->
+    <link href='https://fonts.googleapis.com/css?family=Cantora One' rel='stylesheet'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

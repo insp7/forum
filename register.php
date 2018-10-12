@@ -1,23 +1,5 @@
-<!-- Pending to Implement toastr on register form -->
 <!DOCTYPE html>
 <html lang="en">
-
-<?php 
-    // require_once("classes/Users.php");
-
-    // if(isset($_POST['register'])) { 
-    //     $first_name = $_POST['firstname'];
-    //     $last_name = $_POST['lastname'];
-    //     $user_name = $_POST['username'];
-    //     $email = $_POST['email'];
-    //     $password = $_POST['password'];
-    //     $user_branch = $_POST['user_branch'];
-    //     $user_dob = $_POST['user_dob'];
-
-    //     $users = new Users();
-    //     $users->addUser($first_name, $last_name, $user_name, $email, $password, $user_dob, $user_branch);
-    // } 
-?>
 
 <!-- HEADER -->
 <head>

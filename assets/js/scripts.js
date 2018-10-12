@@ -1,4 +1,4 @@
-// var registered;
+// Using Vanilla Javascript here
 function loginButtonClicked(event) {
     /*-------------------- CODE FOR IF LOGIN BUTTON IS CLICKED --------------------*/
 	event.preventDefault();// Prevent the default action

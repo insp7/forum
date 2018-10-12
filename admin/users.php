@@ -4,7 +4,7 @@
     <!-- HEADER -->
     <?php
         require_once("../ui-elements/header.php");
-        require_once("classes/Users.php")
+        require_once("../classes/Users.php");
     ?>
 
     <body>

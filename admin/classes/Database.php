@@ -3,13 +3,13 @@
     Tables: 
     users(user_id, user_name, user_password, user_email, user_dob, user_branch, user_posts, user_role, user_profile_img)
     
-    roles(role_id, role_name)
+    roles(role_id, role_name) // Dropped
 
     posts(post_id, post_content, post_image, post_user_id, created_at, deleted_at, deleted, updated_at, parent_post_id, post_points, post_points_dirty_bit)
 
-    post_votes(post_votes_id, post_id, user_id, vote)
+    post_votes(post_votes_id, post_id, user_id, vote) // Dropped
 
-    notifications(notification_id, from_user_id, to_user_id, notification_content, notified)
+    notifications(notification_id, from_user_id, to_user_id, notification_content, notified) // Dropped
      */
     
     class Database {

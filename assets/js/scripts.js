@@ -37,47 +37,75 @@ function authenticateInfo(email, password) {
 		//RESPONSE
 		if(this.responseText === "true") {
 			document.getElementById("login-form").submit();
-		}else if(this.responseText === "false") {
+		} else if(this.responseText === "false") {
 			document.getElementById("authentication-error-div").classList.remove("hidden");
 		}		
 	};
 
-	myRequest.open("POST", "manage-ajax.php", true); 
+	myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
 	myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	myRequest.send("login-email="+email+"&login-password="+password+"&manage=login");
 }
 
+// function normalizeData(askedQuestion) {
+//     console.log(askedQuestion.includes("<br>"));
+//     return askedQuestion.replace(/\<br\>/g, "</div><div>");
+// }
+
+
 function postQuestionClicked(event) {
     /*-------------------- CODE FOR IF POST_QUESTION BUTTON IS CLICKED --------------------*/
 	event.preventDefault();
-
+    
     var questionTags = document.getElementById("question_tags").value;
 	var askedQuestion = document.getElementById("askedQuestion").value;
-	
-	if(askedQuestion === ""){
+
+	if(askedQuestion === "") {
 		document.getElementById("askedQuestion-error").classList.remove("hidden");
-	}else {
+	} else {
 		if(!document.getElementById("askedQuestion-error").classList.contains('hidden'))
 			document.getElementById("askedQuestion-error").classList.add('hidden');
 		postQuestion(askedQuestion, questionTags);
 	}
 }
 
-function postQuestion(askedQuestion, questionTags){
+function postQuestion(askedQuestion, questionTags) {
     /*-------------------- CODE TO POST QUESTION USING POST AJAX WITHOUT JQUERY --------------------*/
 	var myRequest = new XMLHttpRequest();
 
 	myRequest.onload = function(){
 		// RESPONSE
 		if(this.responseText === "true") {
-			document.getElementById("post-question-form").submit();
+            // SET TO BLANK
+            document.getElementById("question_tags").value = "";
+            $('#askedQuestion').froalaEditor('html.set' , '');
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "4000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.success("We'll keep you notified", "Question posted!"); // Show toastr
 		} else if(this.responseText === "false") {
 			document.getElementById("askedQuestion-error").innerHTML = "Something Wrong happened!";
 		}		
 	};
 
 	//https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
-	myRequest.open("POST", "../manage-ajax.php", true); 
+	myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
 	myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	myRequest.send("post_content="+askedQuestion+"&post_tags="+questionTags+"&manage=posting_question");
 }
@@ -89,27 +117,34 @@ function logoutButtonClicked(event) {
 
     myRequest.onload = function() {
         // RESPONSE
-        window.location["pathname"] = this.responseText;
+        // window.location["pathname"] = this.responseText; 
+        window.location = this.responseText; // Setting the absolute path(A better way than before)
     };
 
-    var location = window.location["pathname"];
-    var regex = new RegExp("\/forum\/[a-zA-Z0-9\-\_]*\.php"); // Add more to this later
+    /* Redirection to manage-ajax file : This was too complex(yet static) and unnecessary logic for implementing simple logout */
+    /* Also it was made static i.e. it was only working for when logout was clicked from : 
+        1) files inside root directory, 
+        2) files one level down the root directory */
+    // var location = window.location["pathname"];
+    // var regex = new RegExp("\/forum\/[a-zA-Z0-9\-\_]*\.php"); // Add more to this later
 
-    if(regex.test(location)) { 
-        /* Logout button was clicked from some page which is located in the root directory 
-        ex. root/somepage.php */ 
-        myRequest.open("POST", "manage-ajax.php", true); // so redirect to "manage-ajax.php"
-    } else { 
-        /* Logout button was clicked from some page which is not located one level down the root directory 
-        ex. root/somefolder/somepage.php */
-        myRequest.open("POST", "../manage-ajax.php", true); // so redirect to "../manage-ajax.php"
-    }
-    //https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
+    // if(regex.test(location)) { 
+    //     /* Logout button was clicked from some page which is located in the root directory 
+    //     ex. root/somepage.php */ 
+    //     myRequest.open("POST", "manage-ajax.php", true); // so redirect to "manage-ajax.php"
+    // } else { 
+    //     /* Logout button was clicked from some page which is located one level down the root directory 
+    //     ex. root/somefolder/somepage.php */
+    //     myRequest.open("POST", "../manage-ajax.php", true); // so redirect to "../manage-ajax.php"
+    // }
+
+    // A more simpler and full-proof(dynamically working from all directories) approach is to set absolute path.
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("manage=logout");
 }
 
-function register(){
+function register() {
     /*-------------------- CODE FOR IF REGISTER BUTTON IS CLICKED --------------------*/
     
     // Take the user data
@@ -125,7 +160,7 @@ function register(){
     var myRequest = new XMLHttpRequest(); //XMLHttpRequest
 
     myRequest.onload = function() { // RESPONSE
-        // set blank
+        // Set blank
         document.getElementById("firstname").value = "";
         document.getElementById("lastname").value = "";
         document.getElementById("username").value = "";
@@ -156,7 +191,7 @@ function register(){
         toastr.success("Get Started, ain't no need to wait!", "User Created"); // Show toastr
     };
 
-    myRequest.open("POST", "manage-ajax.php", true); 
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
 }
@@ -168,7 +203,7 @@ function register(){
 $(document).ready(function() {
     /*-------------------- INITIALIZE THE FROALA EDITOR --------------------*/
     $('#askedQuestion').froalaEditor({
-    	toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'color', 'insertLink', 
+    	toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
     					'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
         enter: $.FroalaEditor.ENTER_DIV,
         tabSpaces: 4
@@ -188,15 +223,15 @@ $(document).ready(function() {
     });
 
     
-    $.validator.addMethod("eightCharsLong", function(value, element){
+    $.validator.addMethod("eightCharsLong", function(value, element) {
     	return this.optional(element) || value.length >= 8;
     }, "Your password must be atleast 8 characters long.");
 
-    $.validator.addMethod("containsLetter", function(value, element){
+    $.validator.addMethod("containsLetter", function(value, element) {
     	return this.optional(element) || /[a-z]/i.test(value);
     }, "Your password must contain alteast 1 letter.");
 
-    $.validator.addMethod("containsNumber", function(value, element){
+    $.validator.addMethod("containsNumber", function(value, element) {
     	return this.optional(element) || /\d/.test(value);
     }, "Your password must contain alteast 1 number.");
 
@@ -269,33 +304,25 @@ $(document).ready(function() {
                 required: "Please enter a <em>valid<em> date."
             }
     	},
-        submitHandler: function(form){
+        submitHandler: function(form) {
             register();
         }
     });
     /*-------------------------------- END OF REGISTER FORM VALIDATIONS --------------------------------*/
 
-    $('#post_comment').on("click", function(event) {// CODE FOR WHEN THE USER CLICKS POST COMMENT
-
-        var post_id= document.getElementById("post_id").innerText;
-        //console.log("value of post_id is "+post_id)
+    $('#post_comment').on("click", function(event) { // CODE FOR WHEN THE USER CLICKS POST COMMENT
         event.preventDefault();
 
         var comment_content = $('#comment_content').val(); // get the comment content
         document.getElementById("comment_content").value = ""; // Set to "" onclick
 
-
-        /*
-        ..................................................................
-        Commented by DHS(can get post_id using p tag with hidden attribute)
-        ..................................................................
         // To access the url variables (without using php)
         var parts = window.location.search.substr(1).split("&");
         var $_GET = {}; // Store in the $_GET array
         for (var i = 0; i < parts.length; i++) {
             var temp = parts[i].split("=");
             $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
-        }*/
+        }
 
         function postComment(post_id, comment_content) {
             /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
@@ -313,20 +340,18 @@ $(document).ready(function() {
                 if(response[0] === "true") {
                     addComment(response[1], response[2]);    
                 } else {
-                    alert(this.responseText);
+                    alert(this.responseText); // FOR TESTING PURPOSES
                 }
             };
 
-            myRequest.open("POST", "../manage-ajax.php", true); 
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
         }
 
-        postComment(post_id, comment_content);
+        postComment($_GET['post_id'], comment_content);      
     }); // End of posting comment 
-
 });
-
 
 
 

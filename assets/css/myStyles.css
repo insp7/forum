@@ -1,3 +1,4 @@
+/* Styles refered from Bootstrap only, but with a little customizations */
 .btn-success-mine.btn-outline {
     color: #007bff;
 }
@@ -7,7 +8,111 @@
     background-color: #007bff;
     border-color: #007bff;
 }
-.btn-success-mine{
+
+.btn-success-mine {
 	color: #007bff;
 	border-color: #007bff;
+}
+
+.btn-mine { /* overwriting Bootstrap 4 button */
+    display: inline-block;
+    padding: 8px 20px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-bootstrap4-primary-mine {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-bootstrap4-primary-mine:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    text-decoration: none;
+}
+
+.btn-bootstrap4-primary-mine:focus, .btn-bootstrap4-primary-mine.focus {
+    box-shadow: 0 0 0 0.3rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-bootstrap4-primary-mine.disabled, .btn-bootstrap4-primary-mine:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-bootstrap4-primary-mine:not(:disabled):not(.disabled):active, .btn-bootstrap4-primary-mine:not(:disabled):not(.disabled).active,
+.show > .btn-bootstrap4-primary-mine.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.btn-bootstrap4-primary-mine:not(:disabled):not(.disabled):active:focus, .btn-bootstrap4-primary-mine:not(:disabled):not(.disabled).active:focus,
+.show > .btn-bootstrap4-primary-mine.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/* Material Bootstrap Design components */
+.purple-border-mine textarea { /* Haven't used this anywhere yet*/
+    border: 1px solid #ba68c8;
+}
+
+.purple-border-mine .form-control:focus { /* Haven't used this anywhere yet*/
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+
+.shadow-textarea-mine textarea.form-control::placeholder {
+    font-weight: 300;
+}
+
+.shadow-textarea-mine textarea.form-control {
+    padding-left: 0.8rem;
+}
+
+.shadow-textarea-mine .form-control:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 .3rem rgba(186, 104, 200, .25);
+}
+
+.z-depth-1-mine {
+	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); 
+}
+/* End of Material Bootstrap Design components */
+
+/* Styles for Advanced Data Tables */
+table .hover-mine tr:hover {
+    background-color: #D3D3D3;
+}
+/* End of Styles for Advanced Data Tables */ 
+
+/* Below Styles written for very specific purposes*/
+.ask-quest-btn-alignment {
+    float: right; 
+    margin-bottom: 20px; 
+    letter-spacing: .25px;
+}
+
+.show-inline {
+    display: inline;
 }

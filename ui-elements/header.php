@@ -5,7 +5,7 @@
     }
 
     if(!isset($_SESSION['user_id'])) { // if a user is not logged in 
-        header("Location: access-denied.html");
+        header("Location: http://localhost/forum/access-denied.html"); // Added Absolute Path
     }
 ?>
 
@@ -36,6 +36,10 @@
 
     <!-- Custom Fonts -->
     <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to Toastr.css -->
+    <link rel="stylesheet" href="../assets/convertedFromCDN/css/toastr.min.css">
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/myStyles.css">

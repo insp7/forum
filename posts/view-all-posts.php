@@ -20,7 +20,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header">View all posts</h3>
+                        <br>
+                        <h3 class="page-header show-inline">All Posts</h3>
+                        <a href="http://localhost/forum/posts/add-post.php" class="btn-mine btn-bootstrap4-primary-mine ask-quest-btn-alignment"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ask Question</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -57,7 +59,6 @@
                 <?php 
                     } // End of while loop
                 ?>
-                
             </div>
             <!-- /.container-fluid -->
         </div>

@@ -1,11 +1,11 @@
 <?php
 	
 	/*****************************************************************************************************
-	******************************************** COMMENTS CLASS *********************************************
+	******************************************** COMMENTS CLASS ******************************************
 	******************************************************************************************************/
 
 	/*
-	comments(comment_id, comment_post_id, comment_author, comment_content, created_at, updated_at, is_deleted);
+		comments(comment_id, comment_post_id, comment_author, comment_content, created_at, updated_at, is_deleted);
 	*/
 
 	require_once("Database.php");
@@ -25,6 +25,7 @@
 		public function getAllComments() {
 			$sql = "SELECT * FROM comments WHERE is_deleted = 0"; // Select all the posts which are not set to be deleted
 			$result_set = $this->connection->query($sql);
+			
 			if($this->connection->errno) {
 				echo "Error: ".$this->connection->errno;
 				return;

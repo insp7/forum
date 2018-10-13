@@ -13,7 +13,7 @@
         $login = new Login();
         $result_set = $login->getCredentials($email);
 
-        if($row = mysqli_fetch_assoc($result_set)){
+        if($row = mysqli_fetch_assoc($result_set)) {
             extract($row); //  extract() expects parameter 1 to be array, null given; happens when you remove the if
             session_start();
             $_SESSION['user_id'] = $user_id;
@@ -22,9 +22,9 @@
             $_SESSION['user_role'] = $user_role;
 
             if($user_role === "admin") {
-                header("Location: admin/index.php");
+                header("Location: http://localhost/forum/admin/index.php"); // Added Absolute Path
             } else if($user_role === "user") {
-                header("Location: index.php");
+                header("Location: http://localhost/forum/index.php"); // Added Absolute Path
             }
         }
     }
@@ -39,7 +39,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Login or Signup</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

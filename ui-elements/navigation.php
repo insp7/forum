@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -251,7 +251,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-home fa-fw"></i> Home</a>
+                            <?php
+                                // Setting absolute path 
+                                $path = "";
+                                if($_SESSION['user_role'] === "admin") {
+                                    $path = "http://localhost/forum/admin/index.php";
+                                } else {
+                                    $path = "http://localhost/forum/index.php";
+                                }
+                            ?>
+                            <a href="<?php echo $path; ?>"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         <li>
                             <a href="">Forum Name</a>
@@ -270,10 +279,10 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                     <!-- problem here! need to fix this url-->
-                                    <a href="posts/view-all-posts.php">View Posts</a>
+                                    <a href="http://localhost/forum/posts/view-all-posts.php">View Posts</a>
                                 </li>
                                 <li>
-                                    <a href="posts/add-post.php">Post Question <span class="fa fa-question"></span></a>
+                                    <a href="http://localhost/forum/posts/add-post.php">Post Question <span class="fa fa-question"></span></a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

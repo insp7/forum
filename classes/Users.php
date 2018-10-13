@@ -1,4 +1,13 @@
 <?php 
+	/*****************************************************************************************************
+	******************************************** USERS CLASS *********************************************
+	******************************************************************************************************/
+	
+	/*
+		users(user_id, first_name, last_name, user_name, user_password, user_email, user_dob, user_branch, user_posts, 
+		user_role, user_profile_img, user_created_at, is_deleted);
+	*/
+
 	require_once("Database.php");
 
 	class Users {
@@ -12,6 +21,7 @@
 		public function getAllUsers() {
 			$sql = "SELECT * FROM users";
 			$result_set = $this->connection->query($sql);
+			
 			if($this->connection->errno){
 				echo "Error : ".$this->connection->errno;
 				return;

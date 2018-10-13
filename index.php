@@ -8,9 +8,9 @@
 
     if(!isset($_SESSION['user_id'])) { // if a user is not logged in 
         header("Location: access-denied.html");
-    } 
+    }
 
-    require_once("classes/Database.php");
+    // require("classes/Database.php"); 
 ?>
 
 <!-- HEADER -->
@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Welcome - Home Page</title>
     
     <!-- Include Editor style. -->
     <link href="assets/convertedFromCDN/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />

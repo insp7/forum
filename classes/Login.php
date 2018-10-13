@@ -1,12 +1,12 @@
 <?php
-	
-	/*****************************************************************************************************
+    	
+   /******************************************************************************************************
 	******************************************** LOGIN CLASS *********************************************
 	******************************************************************************************************/
 
 	require_once("Database.php");
 
-	class Login{
+	class Login {
 		private $connection;
 
 		public function __construct(){
@@ -27,9 +27,10 @@
 			}
 		}*/
 
-		public function getCredentials($email){
+		public function getCredentials($email) {
 			$sql = "SELECT * FROM users WHERE user_email = '$email'";
 			$result_set = $this->connection->query($sql);
+			
 			if($this->connection->errno){
 				echo "Error: ".$this->connection->errno;
 			}
@@ -37,7 +38,7 @@
 		}
 
 		// using preparedStatements
-		public function validateLogin($email, $password){
+		public function validateLogin($email, $password) {
 			$sql = "SELECT * FROM users WHERE user_email = ? AND user_password = ?";
 			$preparedStatement = $this->connection->prepare($sql);
 			$preparedStatement->bind_param("ss", $email, $password);

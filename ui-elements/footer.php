@@ -24,6 +24,10 @@
     <!-- Include Editor JS files. -->
     <script type="text/javascript" src="../assets/convertedFromCDN/js/froala_editor.pkgd.min.js"></script>
 
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to toastr.js -->
+    <script type="text/javascript" src="../assets/convertedFromCDN/js/toastr.min.js"></script>
+
     <!-- My Script -->
     <script type="text/javascript" src="../assets/js/scripts.js"></script>
     

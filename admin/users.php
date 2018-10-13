@@ -40,7 +40,7 @@
                                     <th>User role</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="hover-mine">
                                 <?php
                                     $sr_no = 1;
                                     $users = new Users();

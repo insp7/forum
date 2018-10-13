@@ -31,15 +31,13 @@
 			$posts = new Posts();
 			$is_inserted = $posts->insertPost($post_content, $post_tags);
 			
-			if($is_inserted) 
-				echo "true";
-			else 
-				echo "false";
+			echo $is_inserted;
 		} else if($_POST['manage'] === "logout") {
 			/* Code to logout successfully */
 			session_unset();
 			session_destroy();
-			echo "forum/login.php";
+			// echo "forum/login.php"; // This was a pretty bad approach
+			echo "http://localhost/forum/login.php"; // Setting absolute path (Better way than before)
 		} else if($_POST['manage'] === "creating_user") {
 			/* Code to create new user */
 			$first_name = $_POST['firstname'];

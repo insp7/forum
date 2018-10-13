@@ -47,9 +47,6 @@
                         $resultant_row = $users->getUserDetailsById($post_user_id, "user_name");
                         extract(mysqli_fetch_assoc($resultant_row));
                 ?>
-                        <!--POST ID FOR JAVASCRIPT-->
-                        <p id="post_id" hidden><?php echo $_GET['post_id']?></p>
-
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <i class="fa fa-user" aria-hidden="true"> <div style="font-size: 20px; font-family: 'Cantora One'; display: inline;"><?php echo $user_name; ?></div></i> 

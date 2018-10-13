@@ -5,8 +5,8 @@
 	******************************************************************************************************/
 
 	/*
-	posts(post_id, post_content, post_image, post_user_id, created_at, deleted_at, deleted, updated_at, parent_post_id, 
-	post_points, post_points_dirty_bit)
+		posts(post_id, post_content, post_image, post_user_id, created_at, deleted_at, deleted, updated_at, parent_post_id, 
+		post_points, post_points_dirty_bit)
 	*/
 
 	require_once("Database.php");
@@ -22,6 +22,7 @@
 		public function getAllPosts() {
 			$sql = "SELECT * FROM posts WHERE is_deleted = 0"; // Select all the posts which are not set to be deleted
 			$result_set = $this->connection->query($sql);
+			
 			if($this->connection->errno) {
 				echo "Error: ".$this->connection->errno;
 				return;
@@ -38,12 +39,12 @@
 			$preparedStatement = $this->connection->prepare($sql);
 			$preparedStatement->bind_param("ssisi", $question, $question_tags, $user_id, $date, $post_points);
 			$preparedStatement->execute();
-			$preparedStatement->store_result(); 
-			
+			$preparedStatement->store_result();
+
 			if(!$this->connection->errno)
-				return true;
+				return "true";
 			else
-				return false;
+				return "".$preparedStatement->error;
 		}
 
 		/*  Function to get all post details specified by the '$columns' parameter using the $post_id

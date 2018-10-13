@@ -275,19 +275,27 @@ $(document).ready(function() {
     });
     /*-------------------------------- END OF REGISTER FORM VALIDATIONS --------------------------------*/
 
-    $('#post_comment').on("click", function(event) { // CODE FOR WHEN THE USER CLICKS POST COMMENT
+    $('#post_comment').on("click", function(event) {// CODE FOR WHEN THE USER CLICKS POST COMMENT
+
+        var post_id= document.getElementById("post_id").innerText;
+        //console.log("value of post_id is "+post_id)
         event.preventDefault();
 
         var comment_content = $('#comment_content').val(); // get the comment content
         document.getElementById("comment_content").value = ""; // Set to "" onclick
 
+
+        /*
+        ..................................................................
+        Commented by DHS(can get post_id using p tag with hidden attribute)
+        ..................................................................
         // To access the url variables (without using php)
         var parts = window.location.search.substr(1).split("&");
         var $_GET = {}; // Store in the $_GET array
         for (var i = 0; i < parts.length; i++) {
             var temp = parts[i].split("=");
             $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
-        }
+        }*/
 
         function postComment(post_id, comment_content) {
             /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
@@ -314,7 +322,7 @@ $(document).ready(function() {
             myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
         }
 
-        postComment($_GET['post_id'], comment_content);      
+        postComment(post_id, comment_content);
     }); // End of posting comment 
 
 });

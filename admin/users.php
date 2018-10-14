@@ -25,7 +25,7 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="users-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -47,24 +47,25 @@
                                     $result_set = $users->getAllUsers();
                                     while($row = mysqli_fetch_assoc($result_set)){
                                         extract($row);
-
-                                        echo "<tr>";
-                                        echo "<td>$sr_no</td>";
-                                        echo "<td>$user_id</td>";
-                                        echo "<td>$first_name</td>";
-                                        echo "<td>$last_name</td>";
-                                        echo "<td>$user_name</td>";
-                                        echo "<td>$user_email</td>";
-                                        echo "<td>$user_dob</td>";
-                                        echo "<td>$user_branch</td>";
-                                        echo "<td>$user_posts</td>";
-                                        echo "<td>$user_role</td>";
-                                        echo "<td><a class='btn btn-outline btn-danger' href=''><span class='fa fa-trash'></span> Delete</a></td>";
-                                        echo "<td><a class='btn btn-outline btn-primary' href=''><span class='fa fa-pencil-square-o'></span> Edit</a></td>";
-                                        echo "</tr>";
-
+                                ?>
+                                        <tr>
+                                            <td><?php echo $sr_no; ?></td>
+                                            <td><?php echo $user_id; ?></td>
+                                            <td><?php echo $first_name; ?></td>
+                                            <td><?php echo $last_name; ?></td>
+                                            <td><?php echo $user_name; ?></td>
+                                            <td><?php echo $user_email; ?></td>
+                                            <td><?php echo $user_dob; ?></td>
+                                            <td><?php echo $user_branch; ?></td>
+                                            <td><?php echo $user_posts; ?></td>
+                                            <td><?php echo $user_role; ?></td>
+                                            <td><a class='btn btn-outline btn-danger' onclick='deleteUserClicked(event, <?php echo $user_id; ?>, this);'><span class='fa fa-trash'></span> Delete</a></td>
+                                            <td><a class='btn btn-outline btn-primary'><span class='fa fa-pencil-square-o'></span> Edit</a></td>
+                                        </tr>
+                                
+                                <?php
                                         $sr_no++;
-                                    }
+                                    } // End of while loop
                                 ?>
                             </tbody>
                         </table>

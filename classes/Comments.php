@@ -80,9 +80,23 @@
 			$result_set = $this->connection->query($sql);
 
 			if($this->connection->errno) {
-				die("Error while getting user details : ".$this->connection->errno);
+				die("Error while getting user details : ".$this->connection->error);
 			}
 			return $result_set;
+		}
+
+		// Function to delete a comment row specified by comment_id
+		// Below function actually sets the 'is_deleted' column to 1; 
+		// The comment is NOT ACTUALLY deleted from database.
+		public function deleteCommentById($comment_id) {
+			$admin_id = $_SESSION['user_id'];
+			$sql = "UPDATE comments SET is_deleted = 1, deleted_by = $admin_id WHERE comment_id = $comment_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while deleting comment: ".$this->connection->error;
+			} 
+			return "true";
 		}
 	}
 ?>

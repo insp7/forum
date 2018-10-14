@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<?php  
+<?php
     if(session_status() == PHP_SESSION_NONE) {
         session_start(); // Session not started so start the session
     }
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Simple Forum</title>
 
     <!-- Include Editor style. -->
     <link href="../assets/convertedFromCDN/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />

@@ -26,6 +26,17 @@
 			return $result_set;
 		}
 
+		// Function to delete notification specified by 'notification_id' FROM THE DATABASE
+		public function deleteNotificationById($notification_id) {
+			$sql = "DELETE FROM notifications WHERE notification_id = $notification_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while deleting notifications: ".$this->connection->error;
+			}
+			return "true";
+		}
+
 		// Pending to Add more methods for the notification functionality
 	}
 ?>

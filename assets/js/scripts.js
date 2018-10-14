@@ -196,6 +196,237 @@ function register() {
     myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
 }
 
+/*---------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_COMMENT BUTTON ----------------------------*/
+function deleteCommentClicked(event, comment_id, row) {
+    event.preventDefault();
+    
+    var myRequest = new XMLHttpRequest();
+
+    function deleteThisRow(row) {
+        var index = row.parentNode.parentNode.rowIndex;
+        document.getElementById("comments-table").deleteRow(index);
+    }
+
+    myRequest.onload = function() {
+        // RESPONSE
+        if(this.responseText === "true") {
+            deleteThisRow(row);
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "preventDuplicates": true,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "100",
+                "hideDuration": "500",
+                "timeOut": "1250",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("Gone with the wind!", "Comment Deleted"); // Show toastr
+        } else {
+            alert(this.responseText);
+            console.log(this.responseText);
+        }
+    };
+    
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("comment_id="+comment_id+"&manage=delete_comment");
+}
+
+/*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_NOTIFICATION BUTTON -------------------------*/
+function deleteNotificationClicked(event, notification_id, row) {
+    event.preventDefault();
+    
+    var myRequest = new XMLHttpRequest();
+
+    function deleteThisRow(row) {
+        var index = row.parentNode.parentNode.rowIndex;
+        document.getElementById("notifications-table").deleteRow(index);
+    }
+
+    myRequest.onload = function() {
+        // RESPONSE
+        if(this.responseText === "true") {
+            deleteThisRow(row);
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "preventDuplicates": true,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "250",
+                "hideDuration": "500",
+                "timeOut": "1250",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("Ain't that ironic?", "Notification Deleted"); // Show toastr
+        } else {
+            alert(this.responseText);
+            console.log(this.responseText);
+        }
+    };
+    
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("notification_id="+notification_id+"&manage=delete_notification");
+}
+
+/*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_NOTIFICATION BUTTON -------------------------*/
+function deletePostClicked(event, post_id, row) {
+    event.preventDefault();
+    
+    var myRequest = new XMLHttpRequest();
+
+    function deleteThisRow(row) {
+        var index = row.parentNode.parentNode.rowIndex;
+        document.getElementById("posts-table").deleteRow(index);
+    }
+
+    myRequest.onload = function() {
+        // RESPONSE
+        if(this.responseText === "true") {
+            deleteThisRow(row);
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "preventDuplicates": true,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "250",
+                "hideDuration": "500",
+                "timeOut": "1250",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("Gone with the wind!", "Posts Deleted"); // Show toastr
+        } else {
+            alert(this.responseText);
+            console.log(this.responseText);
+        }
+    };
+    
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("post_id="+post_id+"&manage=delete_post");
+}
+
+/*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_ROLE BUTTON -------------------------*/
+function deleteRoleClicked(event, role_id, row) {
+    event.preventDefault();
+    
+    var myRequest = new XMLHttpRequest();
+
+    function deleteThisRow(row) {
+        var index = row.parentNode.parentNode.rowIndex;
+        document.getElementById("roles-table").deleteRow(index);
+    }
+
+    myRequest.onload = function() {
+        // RESPONSE
+        if(this.responseText === "true") {
+            deleteThisRow(row);
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "preventDuplicates": true,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "250",
+                "hideDuration": "500",
+                "timeOut": "1250",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("Gone with the wind!", "Role Deleted"); // Show toastr
+        } else {
+            alert(this.responseText);
+            console.log(this.responseText);
+        }
+    };
+    
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("role_id="+role_id+"&manage=delete_role");
+}
+
+/*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_USER BUTTON -------------------------*/
+function deleteUserClicked(event, user_id, row) {
+    event.preventDefault();
+    
+    var myRequest = new XMLHttpRequest();
+
+    function deleteThisRow(row) {
+        var index = row.parentNode.parentNode.rowIndex;
+        document.getElementById("users-table").deleteRow(index);
+    }
+
+    myRequest.onload = function() {
+        // RESPONSE
+        if(this.responseText === "true") {
+            deleteThisRow(row);
+            
+            /* ------- SET TOASTR OPTIONS ------- */
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "preventDuplicates": true,
+                "positionClass": "toast-bottom-left",
+                "onclick": null,
+                "showDuration": "250",
+                "hideDuration": "500",
+                "timeOut": "1250",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info("Gone with the wind!", "User Deleted"); // Show toastr
+        } else {
+            alert(this.responseText);
+            console.log(this.responseText);
+        }
+    };
+    
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("user_id="+user_id+"&manage=delete_user");
+}
+
+
 /************************************************************************************************/
 /************************************ USING JQUERY FROM HERE ************************************/
 /************************************************************************************************/
@@ -310,7 +541,8 @@ $(document).ready(function() {
     });
     /*-------------------------------- END OF REGISTER FORM VALIDATIONS --------------------------------*/
 
-    $('#post_comment').on("click", function(event) { // CODE FOR WHEN THE USER CLICKS POST COMMENT
+    // CODE FOR WHEN THE USER CLICKS POST COMMENT
+    $('#post_comment').on("click", function(event) { 
         event.preventDefault();
 
         var comment_content = $('#comment_content').val(); // get the comment content
@@ -350,8 +582,5 @@ $(document).ready(function() {
         }
 
         postComment($_GET['post_id'], comment_content);      
-    }); // End of posting comment 
+    }); // End of posting comment
 });
-
-
-

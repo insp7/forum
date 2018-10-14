@@ -25,7 +25,7 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-condensed" id="comments-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -55,7 +55,7 @@
                                             <td><?php echo $comment_content; ?></td>
                                             <td><?php echo $created_at; ?></td>
                                             <td><?php echo $updated_at; ?></td>   
-                                            <td><a class='btn btn-outline btn-danger' href=''><span class='fa fa-trash'></span> Delete</a></td>
+                                            <td><a class='btn btn-outline btn-danger' onclick="deleteCommentClicked(event, <?php echo $comment_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                         </tr>
                                 <?php    
                                         $sr_no++;

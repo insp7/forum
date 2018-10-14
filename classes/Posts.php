@@ -63,5 +63,20 @@
 			}
 			return $result_set;
 		}
+
+		// Function to delete a post row specified by post_id
+		// Below function actually sets the 'is_deleted' column to 1; 
+		// The post is NOT ACTUALLY deleted from database.
+		public function deletePostById($post_id) {
+			$admin_id = $_SESSION['user_id'];
+			$date = date('Y-m-d H:i:s');
+			$sql = "UPDATE posts SET is_deleted = 1, deleted_by = $admin_id, deleted_at = '$date' WHERE post_id = $post_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while deleting comment: ".$this->connection->error;
+			} 
+			return "true";
+		}
 	}
 ?>

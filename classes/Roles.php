@@ -44,5 +44,16 @@
 			else
 				return false; // Indicating that role does not exists 
 		}
+
+		// Function to delete role specified by 'role_id' FROM THE DATABASE
+		public function deleteRoleById($role_id) {
+			$sql = "DELETE FROM roles WHERE role_id = $role_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while deleting roles: ".$this->connection->error;
+			}
+			return "true";
+		}
 	}
 ?>

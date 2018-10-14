@@ -4,6 +4,8 @@
 	require_once("classes/Posts.php");
 	require_once("classes/Users.php");
 	require_once("classes/Comments.php");
+	require_once("classes/Notifications.php");
+	require_once("classes/Roles.php");
 	
 	if(session_status() == PHP_SESSION_NONE) {
 		session_start();
@@ -65,6 +67,46 @@
 			}
 			else
 				echo $is_inserted;
+		} else if($_POST['manage'] === "delete_comment") {
+			// Code to delete a comment specified by comment_id
+			$comment_id = $_POST['comment_id'];
+
+			$comments = new Comments();
+			$is_deleted = $comments->deleteCommentById($comment_id);
+
+			echo $is_deleted;
+		} else if($_POST['manage'] === "delete_notification") {
+			// Code to delete a notification specified by the notification_id
+			$notification_id = $_POST['notification_id'];
+
+			$notifications = new Notifications();
+			$is_deleted = $notifications->deleteNotificationById($notification_id);
+
+			echo $is_deleted;
+		} else if($_POST['manage'] === "delete_post") {
+			// Code to delete a post specified by the post_id
+			$post_id = $_POST['post_id'];
+
+			$posts = new Posts();
+			$is_deleted = $posts->deletePostById($post_id);
+
+			echo $is_deleted;
+		} else if($_POST['manage'] === "delete_role") {
+			// Code to delete a role specified by the role_id
+			$role_id = $_POST['role_id'];
+
+			$roles = new Roles();
+			$is_deleted = $roles->deleteRoleById($role_id);
+
+			echo $is_deleted;
+		} else if($_POST['manage'] === "delete_user") {
+			// Code to delete a user specified by the user_id
+			$user_id = $_POST['user_id'];
+
+			$users = new Users();
+			$is_deleted = $users->deleteUserById($user_id);
+
+			echo $is_deleted;
 		}
-	}
+	} 
 ?>

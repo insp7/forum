@@ -25,7 +25,7 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed">
+                        <table class="table table-hover table-striped table-condensed" id="roles-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -45,7 +45,7 @@
                                             <td><?php echo $sr_no; ?></td>
                                             <td><?php echo $role_id; ?></td>
                                             <td><?php echo $role_name; ?></td>
-                                            <td><a class='btn btn-outline btn-danger' href=''><span class='fa fa-trash'></span> Delete</a></td>
+                                            <td><a class='btn btn-outline btn-danger' onclick="deleteRoleClicked(event, <?php echo $role_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                         </tr>
                                 <?php    
                                         $sr_no++;

@@ -5,6 +5,10 @@
     <?php
         require_once("../ui-elements/header.php");
         require_once("../classes/Notifications.php");
+
+        if($_SESSION['user_role'] !== "admin") {
+            header("Location: http://localhost/forum/admin-access-denied.html"); // Added Absolute Path            
+        }
     ?>
 
     <body>
@@ -25,7 +29,7 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed">
+                        <table class="table table-hover table-striped table-condensed" id="notifications-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -51,7 +55,7 @@
                                             <td><?php echo $to_user_id; ?></td>
                                             <td><?php echo $notification_content; ?></td>
                                             <td><?php echo $notified; ?></td>
-                                            <td><a class='btn btn-outline btn-danger' href=''><span class='fa fa-trash'></span> Delete</a></td>
+                                            <td><a class='btn btn-outline btn-danger' onclick="deleteNotificationClicked(event, <?php echo $notification_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                         </tr>
                                 <?php    
                                         $sr_no++;

@@ -19,7 +19,7 @@
 		}
 
 		public function getAllUsers() {
-			$sql = "SELECT * FROM users";
+			$sql = "SELECT * FROM users WHERE is_deleted = 0";
 			$result_set = $this->connection->query($sql);
 			
 			if($this->connection->errno){
@@ -62,6 +62,21 @@
 				die("Error while getting user details : ".$this->connection->errno);
 			}
 			return $result_set; 
+		}
+
+		// Function to delete a user row specified by user_id
+		// Below function actually sets the 'is_deleted' column to 1; 
+		// The post is NOT ACTUALLY deleted from database.
+		public function deleteUserById($user_id) {
+			$admin_id = $_SESSION['user_id'];
+			$date = date('Y-m-d H:i:s');
+			$sql = "UPDATE users SET is_deleted = 1, deleted_by = $admin_id, deleted_at = '$date' WHERE user_id = $user_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while deleting User: ".$this->connection->error;
+			} 
+			return "true";
 		}
 	}	
 ?>

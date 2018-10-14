@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <table width="100%" id="posts-table" class="table table-striped table-condensed">
+                    <table width="100%" id="posts-table" class="table table-striped table-condensed" id="posts-table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -55,7 +55,7 @@
                                         <td><?php echo $created_at; ?></td>
                                         <td><?php echo $updated_at; ?></td>
                                         <td><?php echo $post_points; ?></td>   
-                                        <td><a class='btn btn-outline btn-danger' href=''><span class='fa fa-trash'></span> Delete</a></td>
+                                        <td><a class='btn btn-outline btn-danger' onclick="deletePostClicked(event, <?php echo $post_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                     </tr>
                             <?php
                                     $sr_no++;

@@ -195,6 +195,11 @@ function register() {
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
 }
+// END OF REGISTER FUNCTION
+
+/***************************************************************************************************************
+***************************************** CODE FOR ALL DELETE BUTTONS ******************************************
+****************************************************************************************************************/
 
 /*---------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_COMMENT BUTTON ----------------------------*/
 function deleteCommentClicked(event, comment_id, row) {
@@ -425,7 +430,119 @@ function deleteUserClicked(event, user_id, row) {
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("user_id="+user_id+"&manage=delete_user");
 }
+/*------------------------------------- END OF CODE FOR ALL DELETE BUTTONS --------------------------------------*/
 
+
+/*****************************************************************************************************************/ 
+/******************************************* CODE FOR ALL EDIT BUTTONS *******************************************/
+/*****************************************************************************************************************/
+
+/*------------------------- CODE FOR WHEN ADMIN CLICKS EDIT_POST BUTTON -------------------------*/
+// NOTE: Operations like displaying, updation, hiding(of TABLES) and insertion of data into database 
+// are SOLELY IMPLEMENTED USING AJAX
+function editPostClicked(event, post_id, table_id, row) {
+    event.preventDefault(); 
+
+    // Hide the entire HTML Table
+    document.getElementById(table_id).classList.add("hidden");
+
+    // Now show the hidden 'edit-post' page
+    document.getElementById("edit-post-page").classList.remove("hidden");
+
+    // Setting the previous post_tags and post_content using ajax
+    var myRequest = new XMLHttpRequest();
+    
+    myRequest.onload = function() { // RESPONSE
+        var parts = this.responseText.split("`&`"); // spliting by `&`
+        var postDetails = {}; // Store in the postDetails associative array
+
+        postDetails['post_tags'] = parts[0];
+        postDetails['post_content'] = parts[1];
+
+        // SET VALUES 
+        document.getElementById("edit_question_tags").value = postDetails['post_tags'];
+        $('#question-to-edit').froalaEditor('html.set', postDetails['post_content']);
+
+        // When the update-post button is clicked, update the data using ajax 
+        $('#update-question').on("click", function(event) {
+            event.preventDefault();
+
+            // BASE CASE 
+            if(!document.getElementById("question-to-edit-error").classList.contains("hidden"))
+                document.getElementById("question-to-edit-error").classList.add("hidden");
+
+            // Check if the admin/user has submitted blank 
+            if($('#question-to-edit').froalaEditor('html.get') === "") {
+                document.getElementById("question-to-edit-error").classList.remove("hidden");
+            } else {
+                // GET THE UPDATED VALUES
+                postDetails['post_tags'] = document.getElementById("edit_question_tags").value;
+                postDetails['post_content'] = $('#question-to-edit').froalaEditor('html.get');
+
+                myRequest.onload = function() { // RESPONSE
+                    var response = this.responseText.split("`&`");
+                    var updationDetails = {};
+
+                    // Store the updation details such as 'updated_by' & 'updated_at' inside this array associatively.
+                    updationDetails['updated_by'] = response[1];
+                    updationDetails['updated_at'] = response[2];
+
+                    // Now Hide the 'edit-post' page again
+                    document.getElementById("edit-post-page").classList.add("hidden");
+
+                    // function to update HTML table contents dynamically without refreshing the page
+                    function updateTableContents() {
+                        var table = document.getElementById(table_id); // Get the HTML table
+                        var rows = table.rows.length; // Gets the number of rows of that table
+                        var index = row.parentNode.parentNode.rowIndex; // Gets the index of the row of which the edit button was clicked
+
+                        // Loops through rows
+                        for(var i = 0; i < rows; i++) {
+                            if(i == index) {
+                                var cells = table.rows.item(i).cells; // Gets cells of current row 
+                                var cellLength = cells.length; // Gets amount of cells of current row
+
+                                //loops through each cell in current row
+                                for(var j = 0; j < cellLength; j++) { 
+                                    // we want 2nd, 4th, 6th & 7th columns of the table to be updated
+                                    switch(j) {
+                                        case 2: cells.item(j).innerHTML = postDetails['post_content'];
+                                                break;
+
+                                        case 4: cells.item(j).innerHTML = postDetails['post_tags'];
+                                                break;
+
+                                        case 6: cells.item(j).innerHTML = updationDetails['updated_at'];
+                                                break;
+
+                                        case 7: cells.item(j).innerHTML = updationDetails['updated_by'];
+                                                break;
+                                    }
+                                }
+                                break; // once the matching row index is found, break 
+                            }
+                        }
+                    } updateTableContents();
+
+                    // Show the entire HTML Table again
+                    document.getElementById(table_id).classList.remove("hidden");
+
+                    // Show sweetalert
+                    swal("Contents Upated", "Updation performed in Lightning fast speed!", "success");
+                };
+
+                myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+                myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                myRequest.send("post_id="+post_id+"&post_tags="+postDetails['post_tags']+"&post_content="+postDetails['post_content']+"&manage=update_post_clicked");
+            }
+        });
+    };
+
+    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    myRequest.send("post_id="+post_id+"&manage=edit_post_clicked");
+}
+/*------------------------------------- END OF CODE FOR ALL EDIT BUTTONS --------------------------------------*/
 
 /************************************************************************************************/
 /************************************ USING JQUERY FROM HERE ************************************/
@@ -436,6 +553,14 @@ $(document).ready(function() {
     $('#askedQuestion').froalaEditor({
     	toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
     					'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
+        enter: $.FroalaEditor.ENTER_DIV,
+        tabSpaces: 4
+    });
+
+    // For editing the question
+    $('#question-to-edit').froalaEditor({
+        toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
+                        'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
         enter: $.FroalaEditor.ENTER_DIV,
         tabSpaces: 4
     });

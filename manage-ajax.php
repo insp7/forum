@@ -107,6 +107,27 @@
 			$is_deleted = $users->deleteUserById($user_id);
 
 			echo $is_deleted;
+		} else if($_POST['manage'] === "edit_post_clicked") {
+			// Code to send post_tags and post_content specified by the post_id
+			$post_id = $_POST['post_id'];
+
+			$posts = new Posts();
+			$post_details = $posts->getPostById($post_id, "post_content, post_tags");
+			extract(mysqli_fetch_assoc($post_details));
+
+			echo $post_tags."`&`".$post_content; // spliting by `&`
+		} else if($_POST['manage'] === "update_post_clicked") {
+			// Code to Update the post
+			$post_id = $_POST['post_id'];
+			$post_tags = $_POST['post_tags'];
+			$post_content = $_POST['post_content'];
+			$admin_id = $_SESSION['user_id'];
+			$date = date('Y-m-d H:i:s');
+
+			$posts = new Posts();
+			$is_updated = $posts->updatePostById($post_id, $post_tags, $post_content, $admin_id, $date);
+
+			echo $is_updated."`&`".$admin_id."`&`".$date; // spliting by `&`
 		}
 	} 
 ?>

@@ -59,7 +59,7 @@
 			$result_set = $this->connection->query($sql);
 
 			if($this->connection->errno) {
-				die("Error while getting user details : ".$this->connection->errno);
+				die("Error while getting post details : ".$this->connection->errno);
 			}
 			return $result_set;
 		}
@@ -74,8 +74,19 @@
 			$result_set = $this->connection->query($sql);
 
 			if($this->connection->error) {
-				return "Error while deleting comment: ".$this->connection->error;
+				return "Error while deleting post: ".$this->connection->error;
 			} 
+			return "true";
+		}
+
+		// Function to update $post_tags, $post_content, $admin_id & $date using the $post_id
+		public function updatePostById($post_id, $post_tags, $post_content, $admin_id, $date) {
+			$sql = "UPDATE posts SET post_tags = '$post_tags', post_content = '$post_content', updated_at = '$date', updated_by = $admin_id WHERE post_id = $post_id";
+			$result_set = $this->connection->query($sql);
+
+			if($this->connection->error) {
+				return "Error while Updating comment: ".$this->connection->error;
+			}
 			return "true";
 		}
 	}

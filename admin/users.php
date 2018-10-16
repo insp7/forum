@@ -59,8 +59,8 @@
                                             <td><?php echo $user_branch; ?></td>
                                             <td><?php echo $user_posts; ?></td>
                                             <td><?php echo $user_role; ?></td>
-                                            <td><a class='btn btn-outline btn-danger' onclick='deleteUserClicked(event, <?php echo $user_id; ?>, this);'><span class='fa fa-trash'></span> Delete</a></td>
                                             <td><a class='btn btn-outline btn-primary'><span class='fa fa-pencil-square-o'></span> Edit</a></td>
+                                            <td><a class='btn btn-outline btn-danger' onclick='deleteUserClicked(event, <?php echo $user_id; ?>, this);'><span class='fa fa-trash'></span> Delete</a></td>
                                         </tr>
                                 
                                 <?php

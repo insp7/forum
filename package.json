@@ -1,0 +1,17 @@
+{
+  "name": "forum",
+  "version": "1.0.0",
+  "description": "Simple implementation of a Q&A forum website.",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "simpleForumWebsite"
+  ],
+  "author": "aniket-konkar <inspiration601@gmail.com> (https://github.com/insp7/forum)",
+  "license": "ISC",
+  "dependencies": {
+    "sweetalert": "^2.1.0"
+  }
+}

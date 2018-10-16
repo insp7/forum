@@ -34,6 +34,7 @@
                                 <th>Tags</th>
                                 <th>Created at</th>
                                 <th>updated at</th>
+                                <th>updated by</th>
                                 <th>Points</th>
                             </tr>
                         </thead>
@@ -54,7 +55,9 @@
                                         <td><?php echo $post_tags; ?></td>
                                         <td><?php echo $created_at; ?></td>
                                         <td><?php echo $updated_at; ?></td>
-                                        <td><?php echo $post_points; ?></td>   
+                                        <td><?php echo $updated_by; ?></td>
+                                        <td><?php echo $post_points; ?></td>
+                                        <td><a class='btn btn-outline btn-info' onclick="editPostClicked(event, <?php echo $post_id; ?>, 'posts-table', this);"><span class='fa fa-pencil-square-o'></span> Edit</a></td>   
                                         <td><a class='btn btn-outline btn-danger' onclick="deletePostClicked(event, <?php echo $post_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                     </tr>
                             <?php
@@ -65,6 +68,23 @@
                     </table>
                 </div>
                 <!-- /#page-wrapper -->
+                
+                <!-- When user clicks edit button, this edit-post-page is shown and the posts-table is hidden -->
+                <div class="hidden" id="edit-post-page">
+                    <div class="container-fluid">
+                        <form action="" method="POST" id="edit-question-form">
+                                <h3>Edit Question</h3>
+                                <input type="text" name="edit_question_tags" id="edit_question_tags" class="form-control" autocomplete="off" placeholder="Add comma separated tags">
+                                <br>
+                                <textarea id="question-to-edit"></textarea>
+                                <div id="question-to-edit-error" class="text-danger hidden">Cannot submit empty Post!</div>
+                                <br>
+                                <button name="update-question" id="update-question" class="btn btn-outline btn-info">Update Post</button>
+                        </form>    
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /#edit-post-page -->
             </div>
             <!-- /#wrapper -->
 

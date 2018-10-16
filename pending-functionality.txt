@@ -35,3 +35,7 @@ Other things to do:
 	2) Setup all redirections of pages perfectly and efficiently.
 	3) Remove unnecessary html code(ex. the side-bar navigation tabs which are not used)
 	4) No user should be able to access the files in the admin folder.
+	5) Upgrade to sweetAlert 2.0
+
+Side notes: 
+	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly

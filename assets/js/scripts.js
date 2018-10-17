@@ -204,231 +204,238 @@ function register() {
 /*---------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_COMMENT BUTTON ----------------------------*/
 function deleteCommentClicked(event, comment_id, row) {
     event.preventDefault();
-    
-    var myRequest = new XMLHttpRequest();
 
-    function deleteThisRow(row) {
-        var index = row.parentNode.parentNode.rowIndex;
-        document.getElementById("comments-table").deleteRow(index);
-    }
+    swal({
+        title: 'Are you sure?',
+        text: "This comment shall be moved to 'deleted-comments' section",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if(result.value) { // If true, perform delete operation
+            var myRequest = new XMLHttpRequest();
 
-    myRequest.onload = function() {
-        // RESPONSE
-        if(this.responseText === "true") {
-            deleteThisRow(row);
-            
-            /* ------- SET TOASTR OPTIONS ------- */
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "preventDuplicates": true,
-                "positionClass": "toast-bottom-left",
-                "onclick": null,
-                "showDuration": "100",
-                "hideDuration": "500",
-                "timeOut": "1250",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+            function deleteThisRow(row) {
+                var index = row.parentNode.parentNode.rowIndex;
+                document.getElementById("comments-table").deleteRow(index);
             }
-            toastr.info("Gone with the wind!", "Comment Deleted"); // Show toastr
-        } else {
-            alert(this.responseText);
-            console.log(this.responseText);
+
+            myRequest.onload = function() {
+                // RESPONSE
+                if(this.responseText === "true") {
+                    deleteThisRow(row);
+
+                    // Show sweetalert
+                    swal({
+                        type: 'success', 
+                        text: 'Comment Deleted!', 
+                        title: 'Gone with the wind',
+                        showConfirmButton: false,
+                        timer: 1600
+                    });
+                } else {
+                    alert(this.responseText);
+                    console.log(this.responseText);
+                }
+            };
+            
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("comment_id="+comment_id+"&manage=delete_comment");
         }
-    };
+    });
     
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
-    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    myRequest.send("comment_id="+comment_id+"&manage=delete_comment");
+    
 }
 
 /*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_NOTIFICATION BUTTON -------------------------*/
 function deleteNotificationClicked(event, notification_id, row) {
     event.preventDefault();
     
-    var myRequest = new XMLHttpRequest();
+    swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if(result.value) { // If true, perform delete operation
+            var myRequest = new XMLHttpRequest();
 
-    function deleteThisRow(row) {
-        var index = row.parentNode.parentNode.rowIndex;
-        document.getElementById("notifications-table").deleteRow(index);
-    }
-
-    myRequest.onload = function() {
-        // RESPONSE
-        if(this.responseText === "true") {
-            deleteThisRow(row);
-            
-            /* ------- SET TOASTR OPTIONS ------- */
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "preventDuplicates": true,
-                "positionClass": "toast-bottom-left",
-                "onclick": null,
-                "showDuration": "250",
-                "hideDuration": "500",
-                "timeOut": "1250",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+            function deleteThisRow(row) {
+                var index = row.parentNode.parentNode.rowIndex;
+                document.getElementById("notifications-table").deleteRow(index);
             }
-            toastr.info("Ain't that ironic?", "Notification Deleted"); // Show toastr
-        } else {
-            alert(this.responseText);
-            console.log(this.responseText);
+
+            myRequest.onload = function() {
+                // RESPONSE
+                if(this.responseText === "true") {
+                    deleteThisRow(row);
+
+                    // Show sweetalert
+                    swal({
+                        type: 'success', 
+                        title: 'Notification Deleted!', 
+                        text: 'Ain\'t that ironic?',
+                        showConfirmButton: false,
+                        timer: 1600
+                    });
+                } else {
+                    alert(this.responseText);
+                    console.log(this.responseText);
+                }
+            };
+            
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("notification_id="+notification_id+"&manage=delete_notification");
         }
-    };
-    
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
-    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    myRequest.send("notification_id="+notification_id+"&manage=delete_notification");
+    });
 }
 
 /*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_NOTIFICATION BUTTON -------------------------*/
 function deletePostClicked(event, post_id, row) {
     event.preventDefault();
-    
-    var myRequest = new XMLHttpRequest();
 
-    function deleteThisRow(row) {
-        var index = row.parentNode.parentNode.rowIndex;
-        document.getElementById("posts-table").deleteRow(index);
-    }
+    swal({
+        title: 'Are you sure?',
+        text: "This post shall be moved to 'deleted-posts' section",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if(result.value) { // If true, perform delete operation
+            var myRequest = new XMLHttpRequest();
 
-    myRequest.onload = function() {
-        // RESPONSE
-        if(this.responseText === "true") {
-            deleteThisRow(row);
-            
-            /* ------- SET TOASTR OPTIONS ------- */
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "preventDuplicates": true,
-                "positionClass": "toast-bottom-left",
-                "onclick": null,
-                "showDuration": "250",
-                "hideDuration": "500",
-                "timeOut": "1250",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+            function deleteThisRow(row) {
+                var index = row.parentNode.parentNode.rowIndex;
+                document.getElementById("posts-table").deleteRow(index);
             }
-            toastr.info("Gone with the wind!", "Posts Deleted"); // Show toastr
-        } else {
-            alert(this.responseText);
-            console.log(this.responseText);
+
+            myRequest.onload = function() {
+                // RESPONSE
+                if(this.responseText === "true") {
+                    deleteThisRow(row);
+
+                    // Show sweetalert
+                    swal({
+                        type: 'success', 
+                        text: 'Post Deleted!', 
+                        title: 'Gone with the wind',
+                        showConfirmButton: false,
+                        timer: 1600
+                    });
+                } else {
+                    alert(this.responseText);
+                    console.log(this.responseText);
+                }
+            };
+            
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("post_id="+post_id+"&manage=delete_post");
         }
-    };
-    
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
-    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    myRequest.send("post_id="+post_id+"&manage=delete_post");
+    });
 }
 
 /*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_ROLE BUTTON -------------------------*/
 function deleteRoleClicked(event, role_id, row) {
     event.preventDefault();
     
-    var myRequest = new XMLHttpRequest();
+    swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if(result.value) { // If true, perform delete operation
+            var myRequest = new XMLHttpRequest();
 
-    function deleteThisRow(row) {
-        var index = row.parentNode.parentNode.rowIndex;
-        document.getElementById("roles-table").deleteRow(index);
-    }
-
-    myRequest.onload = function() {
-        // RESPONSE
-        if(this.responseText === "true") {
-            deleteThisRow(row);
-            
-            /* ------- SET TOASTR OPTIONS ------- */
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "preventDuplicates": true,
-                "positionClass": "toast-bottom-left",
-                "onclick": null,
-                "showDuration": "250",
-                "hideDuration": "500",
-                "timeOut": "1250",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+            function deleteThisRow(row) {
+                var index = row.parentNode.parentNode.rowIndex;
+                document.getElementById("roles-table").deleteRow(index);
             }
-            toastr.info("Gone with the wind!", "Role Deleted"); // Show toastr
-        } else {
-            alert(this.responseText);
-            console.log(this.responseText);
+
+            myRequest.onload = function() {
+                // RESPONSE
+                if(this.responseText === "true") {
+                    deleteThisRow(row);           
+
+                    // Show sweetalert
+                    swal({
+                        type: 'success', 
+                        text: 'Role Deleted!', 
+                        title: 'Gone with the wind',
+                        showConfirmButton: false,
+                        timer: 1600
+                    }); 
+                } else {
+                    alert(this.responseText);
+                    console.log(this.responseText);
+                }
+            };
+            
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("role_id="+role_id+"&manage=delete_role");
         }
-    };
-    
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
-    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    myRequest.send("role_id="+role_id+"&manage=delete_role");
+    });    
 }
 
 /*------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_USER BUTTON -------------------------*/
 function deleteUserClicked(event, user_id, row) {
     event.preventDefault();
     
-    var myRequest = new XMLHttpRequest();
+    swal({
+        title: 'Are you sure?',
+        text: "This user shall be moved to 'deleted-users' section",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+        if(result.value) { // If true, perform delete operation
+            var myRequest = new XMLHttpRequest();
 
-    function deleteThisRow(row) {
-        var index = row.parentNode.parentNode.rowIndex;
-        document.getElementById("users-table").deleteRow(index);
-    }
-
-    myRequest.onload = function() {
-        // RESPONSE
-        if(this.responseText === "true") {
-            deleteThisRow(row);
-            
-            /* ------- SET TOASTR OPTIONS ------- */
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "preventDuplicates": true,
-                "positionClass": "toast-bottom-left",
-                "onclick": null,
-                "showDuration": "250",
-                "hideDuration": "500",
-                "timeOut": "1250",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+            function deleteThisRow(row) {
+                var index = row.parentNode.parentNode.rowIndex;
+                document.getElementById("users-table").deleteRow(index);
             }
-            toastr.info("Gone with the wind!", "User Deleted"); // Show toastr
-        } else {
-            alert(this.responseText);
-            console.log(this.responseText);
+
+            myRequest.onload = function() {
+                // RESPONSE
+                if(this.responseText === "true") {
+                    deleteThisRow(row);
+
+                    // Show sweetalert
+                    swal({
+                        type: 'success', 
+                        text: 'User Deleted!', 
+                        title: 'Gone with the wind',
+                        showConfirmButton: false,
+                        timer: 1600
+                    });
+                } else {
+                    alert(this.responseText);
+                    console.log(this.responseText);
+                }
+            };
+            
+            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            myRequest.send("user_id="+user_id+"&manage=delete_user");
         }
-    };
-    
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
-    myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    myRequest.send("user_id="+user_id+"&manage=delete_user");
+    });
 }
 /*------------------------------------- END OF CODE FOR ALL DELETE BUTTONS --------------------------------------*/
 
@@ -528,7 +535,13 @@ function editPostClicked(event, post_id, table_id, row) {
                     document.getElementById(table_id).classList.remove("hidden");
 
                     // Show sweetalert
-                    swal("Contents Upated", "Updation performed in Lightning fast speed!", "success");
+                    swal({
+                        type: 'success', 
+                        title: 'With Lightning fast speed!', 
+                        text: 'Contents are Updated!',
+                        showConfirmButton: false,
+                        timer: 1600
+                    });
                 };
 
                 myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
@@ -541,7 +554,7 @@ function editPostClicked(event, post_id, table_id, row) {
     myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("post_id="+post_id+"&manage=edit_post_clicked");
-}
+} // END OF editPostClicked() FUNCTION
 /*------------------------------------- END OF CODE FOR ALL EDIT BUTTONS --------------------------------------*/
 
 /************************************************************************************************/

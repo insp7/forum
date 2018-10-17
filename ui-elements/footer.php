@@ -1,4 +1,4 @@
-FOOTER -->
+<!-- FOOTER -->
 
     <!-- jQuery -->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
@@ -27,9 +27,9 @@ FOOTER -->
     <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
     <!-- Link to toastr.js -->
     <script type="text/javascript" src="../assets/convertedFromCDN/js/toastr.min.js"></script>
-
-    <!-- Link to sweetalert.min.js -->
-    <script type="text/javascript" src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!-- SweetAlert 2.0 js -->
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
     <!-- My Script -->
     <script type="text/javascript" src="../assets/js/scripts.js"></script>

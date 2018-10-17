@@ -1,6 +1,6 @@
 For Admin: 
 	1) Should be able to delete data from the following tables - (comments, notifications, roles, users, posts) : DONE
-	2) Should be able to insert data in 'roles' table
+	2) Should be able to insert data in 'roles' table.
 	3) Should be able to perform "search" on tables (using ajax)
 	4) Should be able to see all the activities of users & other admins. 
 	   The activities would be displayed on his homepage.
@@ -15,6 +15,9 @@ For Admin:
 	7) Add searching posts by tags/name functionality on the 'view-all-posts' page's search bar
 	8) There should be a page on which admin can see only his asked questions
 	9) Add a separate page for showing deleted comments. And add an option to perma-delete them from the database.
+   10) Should be able to edit post.(using ajax) : DONE
+   11) Should be able to edit comments.(using ajax)
+   12) Should be able to edit roles.(using ajax) 
 
 For User: 
 	1) User Should be able to like a post, and the respective no. of likes would be displayed for a post
@@ -35,7 +38,7 @@ Other things to do:
 	2) Setup all redirections of pages perfectly and efficiently.
 	3) Remove unnecessary html code(ex. the side-bar navigation tabs which are not used)
 	4) No user should be able to access the files in the admin folder.
-	5) Upgrade to sweetAlert 2.0
+	5) Upgrade to sweetAlert 2.0 : DONE
 
 Side notes: 
-	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly
+	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly.

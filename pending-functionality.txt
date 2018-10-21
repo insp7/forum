@@ -20,7 +20,7 @@ For Admin:
    12) Should be able to edit roles.(using ajax) 
 
 For User: 
-	1) User Should be able to like a post, and the respective no. of likes would be displayed for a post
+	1) User Should be able to like a post, and the respective no. of likes would be displayed for a post : DONE 
 	2) Whenever user upvotes(likes) a post, a notification should be sent to that post's owner that: 
 	   "some-username" upvoted your post! (when this notification is clicked, it should redirect that owner to the comments.php page,
 	   where the owner can see the number of likes on his posts)
@@ -37,8 +37,10 @@ Other things to do:
 	1) Come up with a name for the forum (some suggestions are in the imp-notes.txt file)
 	2) Setup all redirections of pages perfectly and efficiently.
 	3) Remove unnecessary html code(ex. the side-bar navigation tabs which are not used)
-	4) No user should be able to access the files in the admin folder.
+	4) No user should be able to access the files in the admin folder. : DONE
 	5) Upgrade to sweetAlert 2.0 : DONE
+	6) Final documentation and commenting the code where necessary(for all methods, classes and whereever required)
 
 Side notes: 
 	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly.
+	2) To add a suitable license.

@@ -31,7 +31,10 @@
     <!-- SweetAlert 2.0 js -->
     <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
+    <!-- Popper.js for tooltips -->
+    <script type="text/javascript" src="../assets/convertedFromCDN/js/popper.min.js"></script>
+
     <!-- My Script -->
     <script type="text/javascript" src="../assets/js/scripts.js"></script>
     
-<!-- END OF FOOTER
+<!-- END OF FOOTER -->

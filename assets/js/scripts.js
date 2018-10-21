@@ -194,12 +194,62 @@ function register() {
     myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
-}
-// END OF REGISTER FUNCTION
+} // END OF REGISTER FUNCTION
 
-/***************************************************************************************************************
-***************************************** CODE FOR ALL DELETE BUTTONS ******************************************
-****************************************************************************************************************/
+/*---------------------- CODE FOR WHEN USER/ADMIN UPVOTES A POST OR CANCELS AN UPVOTE OF AN UPVOTED POST ----------------------*/
+function upvotePostClicked(event, post_id, upvoteBtn) {
+    event.preventDefault();
+    var myRequest, parts = {};
+
+    if(upvoteBtn.classList.contains('post-not-upvoted-mine')) { 
+        // UPVOTE THE POST
+        upvoteBtn.classList.remove("post-not-upvoted-mine");
+        upvoteBtn.classList.add("post-upvoted-mine"); 
+
+        // Code to insert who upvoted which post into database using ajax
+        myRequest = new XMLHttpRequest();
+
+        myRequest.onload = function() { // RESPONSE
+            parts = this.responseText.split(":");
+            if(parts[0] === "true") {
+                upvoteBtn.innerHTML = " "+parts[1]; // parts[1] indicates the post_points of this post
+            } else {
+                alert(this.responseText);
+                console.log(this.responseText);
+            }
+        }
+
+        myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+        myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        myRequest.send("post_id="+post_id+"&manage=upvote_post");
+    } else { 
+        // CANCEL THE UPVOTE OF THAT POST
+        upvoteBtn.classList.remove("post-upvoted-mine");
+        upvoteBtn.classList.add("post-not-upvoted-mine"); 
+
+        // Code to delete upvoter's id from database using ajax i.e. to cancel the upvote of the post specified by post_id
+        myRequest = new XMLHttpRequest();
+
+        myRequest.onload = function() { // RESPONSE
+            parts = this.responseText.split(":");
+            if(parts[0] === "true") {
+                upvoteBtn.innerHTML = " "+parts[1]; // parts[1] indicates the post_points of this post
+            } else {
+                alert(this.responseText);
+                console.log(this.responseText);
+            }
+        }
+
+        myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+        myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        myRequest.send("post_id="+post_id+"&manage=cancel_post_upvote");
+    }
+}
+
+
+/***************************************************************************************************************/
+/***************************************** CODE FOR ALL DELETE BUTTONS *****************************************/
+/***************************************************************************************************************/
 
 /*---------------------------- CODE FOR WHEN ADMIN CLICKS DELETE_COMMENT BUTTON ----------------------------*/
 function deleteCommentClicked(event, comment_id, row) {
@@ -563,6 +613,7 @@ function editPostClicked(event, post_id, table_id, row) {
 
 $(document).ready(function() {
     /*-------------------- INITIALIZE THE FROALA EDITOR --------------------*/
+    // For asking Question
     $('#askedQuestion').froalaEditor({
     	toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
     					'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
@@ -683,42 +734,55 @@ $(document).ready(function() {
     $('#post_comment').on("click", function(event) { 
         event.preventDefault();
 
+        // Set the 'empty-comment-error' div to hidden, if its already not hidden
+        if(!document.getElementById("empty-comment-error").classList.contains("hidden"))
+            document.getElementById("empty-comment-error").classList.add("hidden");
+
         var comment_content = $('#comment_content').val(); // get the comment content
-        document.getElementById("comment_content").value = ""; // Set to "" onclick
 
-        // To access the url variables (without using php)
-        var parts = window.location.search.substr(1).split("&");
-        var $_GET = {}; // Store in the $_GET array
-        for (var i = 0; i < parts.length; i++) {
-            var temp = parts[i].split("=");
-            $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
-        }
+        if(comment_content !== "") { // If the entered comment is not blank(null)
+            document.getElementById("comment_content").value = ""; // Set to "" onclick
 
-        function postComment(post_id, comment_content) {
-            /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
-            var myRequest = new XMLHttpRequest();
-
-            function addComment(user_name, comment_created_at) {
-                var div = document.createElement('div');
-                div.innerHTML = '<div class="well well-sm"><div style="font-size: 16px; font-family: \'Cantora One\';">'+user_name+'</div><div style="font-size: 12px;">answered on '+comment_created_at+'</div><h4></h4><p>'+comment_content+'</p></div>';
-                document.getElementById('comment_posted_using_ajax').append(div);
+            // To access the url variables (without using php)
+            var parts = window.location.search.substr(1).split("&");
+            var $_GET = {}; // Store in the $_GET array
+            for (var i = 0; i < parts.length; i++) {
+                var temp = parts[i].split("=");
+                $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
             }
 
-            myRequest.onload = function() {
-                // RESPONSE
-                var response = this.responseText.split("~");
-                if(response[0] === "true") {
-                    addComment(response[1], response[2]);    
-                } else {
-                    alert(this.responseText); // FOR TESTING PURPOSES
+            function postComment(post_id, comment_content) {
+                /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
+                var myRequest = new XMLHttpRequest();
+
+                function addComment(user_name, comment_created_at) {
+                    var div = document.createElement('div');
+                    div.innerHTML = '<div class="well well-sm"><div style="font-size: 16px; font-family: \'Cantora One\';">'+user_name+'</div><div style="font-size: 12px;">answered on '+comment_created_at+'</div><h4></h4><p>'+comment_content+'</p></div>';
+                    document.getElementById('comment_posted_using_ajax').append(div);
                 }
-            };
 
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
-            myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
+                myRequest.onload = function() {
+                    // RESPONSE
+                    var response = this.responseText.split("~");
+                    if(response[0] === "true") {
+                        addComment(response[1], response[2]);    
+                    } else {
+                        alert(this.responseText); // FOR TESTING PURPOSES
+                    }
+                };
+
+                myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+                myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
+            }
+
+            postComment($_GET['post_id'], comment_content);
+        } else { // if the entered comment is blank
+            if(document.getElementById("empty-comment-error").classList.contains("hidden")) 
+                document.getElementById("empty-comment-error").classList.remove("hidden");
         }
-
-        postComment($_GET['post_id'], comment_content);      
     }); // End of posting comment
+
+    /* Tooltip */
+    $('[data-toggle="tooltip"]').tooltip(); 
 });

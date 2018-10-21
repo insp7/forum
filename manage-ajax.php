@@ -6,6 +6,7 @@
 	require_once("classes/Comments.php");
 	require_once("classes/Notifications.php");
 	require_once("classes/Roles.php");
+	require_once("classes/PostVotes.php");
 	
 	if(session_status() == PHP_SESSION_NONE) {
 		session_start();
@@ -128,6 +129,24 @@
 			$is_updated = $posts->updatePostById($post_id, $post_tags, $post_content, $admin_id, $date);
 
 			echo $is_updated."`&`".$admin_id."`&`".$date; // spliting by `&`
+		} else if($_POST['manage'] === "upvote_post") {
+			// Code to upvote the post
+			$post_id = $_POST['post_id'];
+			$upvoter_id = $_SESSION['user_id'];
+
+			$posts_votes = new PostVotes();
+			$is_upvoted = $posts_votes->upvotePostById($post_id, $upvoter_id);
+
+			echo $is_upvoted;
+		} else if($_POST['manage'] === "cancel_post_upvote") {
+			// Code to cancel the upvote of an upvoted post
+			$post_id = $_POST['post_id'];
+			$post_upvote_canceller_id = $_SESSION['user_id']; // get the id of the one who cancelled the upvote of this post
+
+			$posts_votes = new PostVotes();
+			$is_upvote_cancelled = $posts_votes->cancelUpvoteOfPostById($post_id, $post_upvote_canceller_id);
+			
+			echo $is_upvote_cancelled;
 		}
 	} 
 ?>

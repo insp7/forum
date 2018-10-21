@@ -100,19 +100,56 @@
 }
 /* End of Material Bootstrap Design components */
 
-/* Styles for Advanced Data Tables */
+/* Styles for Data Tables */
 table .hover-mine tr:hover {
     background-color: #D3D3D3;
 }
-/* End of Styles for Advanced Data Tables */ 
+/* End of Styles for Data Tables */ 
 
-/* Below Styles written for very specific purposes*/
-.ask-quest-btn-alignment {
+/* Below Styles written for very specific purposes */
+.ask-quest-btn-alignment-mine {
     float: right; 
     margin-bottom: 20px; 
     letter-spacing: .25px;
 }
 
-.show-inline {
+.show-inline-mine {
     display: inline;
 }
+
+/* Upvote button for posts */
+.upvote-post-btn-mine {
+    float: right; 
+    letter-spacing:.25px;
+    cursor: pointer;
+}
+
+/* SET i.e user has clicked the button */
+.post-upvoted-mine { 
+    color: #2793e8;  
+}
+
+/* UNSET i.e user has NOT clicked the button yet */
+.post-not-upvoted-mine {
+    color: #666666;  
+}
+
+.float-right-mine {
+    float: right;
+}
+
+/*  This class will be applied to the post header
+    i.e. for the username of the post & the posted_on details  */
+.post-header-details-mine {
+    font-size: 16px; 
+    font-family: 'Cantora One'; /* Google font */
+}
+
+
+/*
+    COLORS: 
+    #007bff : Good color for button
+    #666666 : Default color of 'Like' button of youtube(when not clicked)
+    #2793e8 : Color of 'Like' button of youtube(when clicked)
+    #cc181e : Red color of youtube;
+*/

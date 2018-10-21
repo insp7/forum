@@ -85,7 +85,8 @@
                 <div class="form-group">
                     <br>
                     <label for="comment_content">Your Comment</label>
-                    <textarea id="comment_content" name="comment_content" class="form-control" placeholder="Write your answer..." rows="3"></textarea>                 
+                    <textarea id="comment_content" name="comment_content" class="form-control" placeholder="Write your answer..." rows="3"></textarea>
+                    <div id="empty-comment-error" class="text-danger hidden">Comment Empty, Cannot post!</div>                 
                 </div>
                 <button class="btn btn-outline btn-success-mine btn-sm" style="font-size: 13px;" id="post_comment" name="post_comment">Post Your Answer</button>
                 <hr>

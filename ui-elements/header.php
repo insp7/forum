@@ -4,7 +4,7 @@
         session_start(); // Session not started so start the session
     }
 
-    if(!isset($_SESSION['user_id'])) { // if a user is not logged in 
+    if(!isset($_SESSION['user_id'])) { // if a user is not logged in
         header("Location: http://localhost/forum/access-denied.html"); // Added Absolute Path
     }
 ?>

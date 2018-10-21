@@ -1,23 +1,21 @@
 For Admin: 
 	1) Should be able to delete data from the following tables - (comments, notifications, roles, users, posts) : DONE
-	2) Should be able to insert data in 'roles' table.
-	3) Should be able to perform "search" on tables (using ajax)
-	4) Should be able to see all the activities of users & other admins. 
+	2) Should be able to perform "search" on tables (using ajax)
+	3) Should be able to see all the activities of users & other admins. 
 	   The activities would be displayed on his homepage.
 	   Activities such as:
 	   a) if a user/admin upvotes some other user's/admin's post 
 	   b) if a user/admin comments on some other user's/admin's post 
 	   c) if a user/admin posts some question 
-	5) if 'deleted_by' column is not included in those listed tables then
+	4) if 'deleted_by' column is not included in those listed tables then
 	   Include another column named 'deleted_by' in the following tables - (comments, users, posts) : DONE
 	   So that we can show a notification (only) on admin homepage that "which admin deleted what data from what table". : PENDING TO SHOW NOTIFICATION
-	6) As soon as a post is perma-deleted(i.e. DELETED FROM DATABASE), all the comments on that post should also be perma-deleted
-	7) Add searching posts by tags/name functionality on the 'view-all-posts' page's search bar
-	8) There should be a page on which admin can see only his asked questions
-	9) Add a separate page for showing deleted comments. And add an option to perma-delete them from the database.
-   10) Should be able to edit post.(using ajax) : DONE
-   11) Should be able to edit comments.(using ajax)
-   12) Should be able to edit roles.(using ajax) 
+	5) As soon as a post is perma-deleted(i.e. DELETED FROM DATABASE), all the comments on that post should also be perma-deleted
+	6) Add searching posts by tags/name functionality on the 'view-all-posts' page's search bar
+	7) There should be a page on which admin can see only his asked questions
+	8) Add a separate page for showing deleted comments. And add an option to perma-delete them from the database.
+   9) Should be able to edit post.(using ajax) : DONE
+   10) Should be able to edit comments.(using ajax)
 
 For User: 
 	1) User Should be able to like a post, and the respective no. of likes would be displayed for a post : DONE 
@@ -28,10 +26,9 @@ For User:
 	   "some-username" commented on your post! (when this notification is clicked, it should redirect that owner to the comments.php page,
 	   where the owner can see the comment posted on his post)
 	4) There should be a page on which user can see only his asked questions 
-	5) User can apply for the role of admin (create a page for that)
+	5) User can apply for the role of admin
 	6) User should be able to see activities such as:
 		a) if another user/admin posts a question
-	7) User should be able to apply for adminship (make a page named 'apply-for-adminship.php' specifically for that)
 
 Other things to do: 
 	1) Come up with a name for the forum (some suggestions are in the imp-notes.txt file)

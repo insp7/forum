@@ -17,7 +17,7 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid container-fluid-mine effect8 padding-mine">
                 <div class="row">
                     <div class="col-lg-12">
                         <br>

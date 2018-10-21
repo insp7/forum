@@ -17,7 +17,7 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid container-fluid-mine effect8 padding-mine">
                 <form action="" method="POST" id="post-question-form">
                     <div>
                         <h3>Ask a Question</h3>

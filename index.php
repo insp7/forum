@@ -39,6 +39,8 @@
     <!-- Custom Fonts -->
     <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" type="text/css" href="assets/css/myStyles.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -57,10 +59,10 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid container-fluid-mine effect8" style="">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">User logged in</h1>
+                        <h1 class="page-header" style="text-align: center; font-weight: 500; text-transform: uppercase; letter-spacing: -1px;">User logged in</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

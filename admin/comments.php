@@ -20,7 +20,8 @@
             ?>
 
             <div id="page-wrapper">
-                <div class="row">
+                <div class="container-fluid container-fluid-mine effect8 padding-mine">
+                    <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">All Comments</h1>
                     </div>
@@ -33,13 +34,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ID</th>
                                     <th>Post ID</th>
                                     <th>Author</th>
-                                    <th>Author's ID</th>
                                     <th>Content</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,13 +49,9 @@
                                 ?>
                                         <tr>
                                             <td><?php echo $sr_no; ?></td>
-                                            <td><?php echo $comment_id; ?></td>
-                                            <td><?php echo $comment_post_id; ?></td>
+                                            <td style="text-align: center; padding-left: 25px; padding-right: 25px;"><?php echo $comment_post_id; ?></td>
                                             <td><?php echo $comment_author; ?></td>
-                                            <td><?php echo $comment_author_id; ?></td>
-                                            <td><?php echo $comment_content; ?></td>
-                                            <td><?php echo $created_at; ?></td>
-                                            <td><?php echo $updated_at; ?></td>   
+                                            <td><?php echo $comment_content; ?></td> 
                                             <td><a class='btn btn-outline btn-danger' onclick="deleteCommentClicked(event, <?php echo $comment_id; ?>, this);"><span class='fa fa-trash'></span> Delete</a></td>
                                         </tr>
                                 <?php    
@@ -68,11 +61,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.table-responsive -->
+                    <!-- /.table-responsive -->                
                 </div>
-                <!-- /#page-wrapper -->
+                
             </div>
-            <!-- /#wrapper -->
+                <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
         <!-- FOOTER -->
         <?php

@@ -5,8 +5,8 @@
 	/*****************************************************************************************************/
 
 	/* posts(post_id, post_content, post_image, post_user_id, post_tags, created_at, deleted_at, is_deleted, deleted_by, updated_at, updated_by, post_points); */
-
 	require_once("Database.php");
+	require_once("Users.php");
 
 	/**
 	 * Posts class to perform various operations 
@@ -58,7 +58,7 @@
 		public function insertPost($question, $question_tags) { 
 			$user_id = $_SESSION['user_id'];
 			$date = date('Y-m-d H:i:s');
-			$post_points = 0; 
+			$post_points = 0; // Default post_points
 
 			$sql = "INSERT INTO posts(post_content, post_tags, post_user_id, created_at, post_points) VALUES(?, ?, ?, ?, ?)";
 			$preparedStatement = $this->connection->prepare($sql);
@@ -66,10 +66,30 @@
 			$preparedStatement->execute();
 			$preparedStatement->store_result();
 
-			if(!$this->connection->errno)
-				return "true";
-			else
+			if($this->connection->errno) {
 				return "".$preparedStatement->error;
+			}
+
+			// Update no. of posts by this user in the users table
+			$sql = "SELECT user_posts FROM users WHERE user_id = $user_id";
+			$result_set = $this->connection->query($sql);
+			extract(mysqli_fetch_assoc($result_set));
+			$user_posts++;
+
+			if($this->connection->error) {
+				return "".$this->connection->error;
+			} 
+
+			$sql = "UPDATE users SET user_posts = ? WHERE user_id = ?";
+			$preparedStatement = $this->connection->prepare($sql);
+			$preparedStatement->bind_param("ii",$user_posts,  $user_id);
+			$preparedStatement->execute();
+
+			if($this->connection->error) {
+				return "".$preparedStatement->error;
+			} else {
+				return "true";
+			}
 		}
 
 		/**
@@ -111,7 +131,27 @@
 			if($this->connection->error) {
 				return "Error while deleting post: ".$this->connection->error;
 			} 
-			return "true";
+			
+			// Update no. of posts by this user in the users table
+			$sql = "SELECT user_posts FROM users WHERE user_id = $admin_id";
+			$result_set = $this->connection->query($sql);
+			extract(mysqli_fetch_assoc($result_set));
+			$user_posts--;
+
+			if($this->connection->error) {
+				return "".$this->connection->error;
+			} 
+
+			$sql = "UPDATE users SET user_posts = ? WHERE user_id = ?";
+			$preparedStatement = $this->connection->prepare($sql);
+			$preparedStatement->bind_param("ii",$user_posts,  $admin_id);
+			$preparedStatement->execute();
+
+			if($this->connection->error) {
+				return "".$preparedStatement->error;
+			} else {
+				return "true";
+			}
 		}
 
 		/**

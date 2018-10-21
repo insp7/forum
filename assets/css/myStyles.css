@@ -153,3 +153,121 @@ table .hover-mine tr:hover {
     #2793e8 : Color of 'Like' button of youtube(when clicked)
     #cc181e : Red color of youtube;
 */
+
+/* JAY ASHRA STYLES */
+div#page-wrapper>div.container-fluid-mine {
+    margin: 25px; 
+    margin-top: 7%;
+    background: #fff!important;
+}
+
+.padding-mine {
+    padding: 2.5%;
+}
+
+.effect1 {
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 15px 15px 6px -6px #777;
+}
+
+.sidebar ul li {
+    padding: 5px 0px!important;
+    border:0px!important;
+    font-size:15px!important;
+}
+
+li.nav-link-margin {
+    margin: 5px 15px;
+    margin-top:0px;
+    margin-bottom: 3px;  
+}
+
+li.nav-link-margin>a {
+    margin: 0;
+    line-height: 30px;
+    font-size: 14px;
+    position: relative;
+    display: block;
+    height: auto;
+    white-space: nowrap;
+}
+
+li>a {
+    color:#3C4858!important;
+}
+
+.sidebar-active , .sidebar-active.nav>li>a:hover {
+    border-radius: 3px;
+    color: #fff!important;
+    background-color: #9c27b0!important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4)!important;
+}
+
+.sidebar-mine {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    height: 100vh;
+    width: 260px;
+    background: #fff;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); 
+}
+
+.sidebar .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent; 
+}
+
+.effect8 {
+    position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.effect8:before, .effect8:after {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:10px;
+    bottom:10px;
+    left:0;
+    right:0;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+
+.effect8:after {
+    right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+}
+
+@media (max-width: 900px) {
+    div#page-wrapper>div.container-fluid-mine {
+        margin-top: 20%;
+    }   
+}
+
+@media (max-width: 700px) {
+    div#page-wrapper>div.container-fluid-mine {
+        margin-top: 50%;
+    }   
+}

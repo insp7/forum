@@ -52,12 +52,13 @@
                                         extract($row);
 
                                         $user_result_set = $users->getUserDetailsById($post_user_id, "user_name");
-                                        extract(mysqli_fetch_assoc($user_result_set)); 
+                                        $user_name_row = mysqli_fetch_assoc($user_result_set); 
+                                        $posted_by = $user_name_row['user_name'];
                                 ?>
                                         <tr>
                                             <td><?php echo $sr_no; ?></td>
                                             <td><?php echo $post_content; ?></td>
-                                            <td><?php echo $user_name; ?></td>
+                                            <td><?php echo $posted_by; ?></td>
                                             <td><?php echo $post_tags; ?></td>
                                             <td><?php echo $post_points; ?></td>
                                             <td><a class='btn btn-outline btn-info' onclick="editPostClicked(event, <?php echo $post_id; ?>, 'posts-table', this);"><span class='fa fa-pencil-square-o'></span> Edit</a></td>   

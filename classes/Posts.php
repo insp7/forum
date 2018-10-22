@@ -6,7 +6,7 @@
 
 	/* posts(post_id, post_content, post_image, post_user_id, post_tags, created_at, deleted_at, is_deleted, deleted_by, updated_at, updated_by, post_points); */
 	require_once("Database.php");
-	require_once("Users.php");
+	// require_once("Users.php"); Uncomment this if any errors occur
 
 	/**
 	 * Posts class to perform various operations 

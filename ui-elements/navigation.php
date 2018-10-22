@@ -13,7 +13,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                     <?php
-                        print_r($_SESSION);
+                        // print_r($_SESSION);
                     ?>
                     <button style="background: none; color: inherit; border: none; padding: 0; font: inherit; outline: inherit; padding-left: 22px; margin-top:14px; margin-right: 10px;" onclick="logoutButtonClicked(event);">
                     <i class="fa fa-sign-out fa-fw"></i> Logout</button>
@@ -25,14 +25,14 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search nav-link-margin">
-                            <div class="input-group custom-search-form">
+                            <!-- <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
-                            </div>
+                            </div> -->
                             <!-- /input-group -->
                         </li>
                         <li class="nav-link-margin">

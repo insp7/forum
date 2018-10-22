@@ -538,11 +538,11 @@ function editPostClicked(event, post_id, table_id, row) {
 
                 myRequest.onload = function() { // RESPONSE
                     var response = this.responseText.split("`&`");
-                    var updationDetails = {};
+                    var updationDetails = {}; // updationDetails are not used in the table for now.
 
                     // Store the updation details such as 'updated_by' & 'updated_at' inside this array associatively.
-                    updationDetails['updated_by'] = response[1];
-                    updationDetails['updated_at'] = response[2];
+                    updationDetails['updated_by'] = response[1]; // NOT DISPLAYED ON THE TABLE FOR NOW.
+                    updationDetails['updated_at'] = response[2]; // NOT DISPLAYED ON THE TABLE FOR NOW.
 
                     // Now Hide the 'edit-post' page again
                     document.getElementById("edit-post-page").classList.add("hidden");
@@ -563,17 +563,19 @@ function editPostClicked(event, post_id, table_id, row) {
                                 for(var j = 0; j < cellLength; j++) { 
                                     // we want 2nd, 4th, 6th & 7th columns of the table to be updated
                                     switch(j) {
-                                        case 2: cells.item(j).innerHTML = postDetails['post_content'];
+                                        case 1: cells.item(j).innerHTML = postDetails['post_content'];
                                                 break;
 
-                                        case 4: cells.item(j).innerHTML = postDetails['post_tags'];
+                                        case 3: cells.item(j).innerHTML = postDetails['post_tags'];
                                                 break;
 
-                                        case 6: cells.item(j).innerHTML = updationDetails['updated_at'];
-                                                break;
+                                        // This values is removed from the table now.
+                                        /*case 6: cells.item(j).innerHTML = updationDetails['updated_at'];
+                                                break;*/
 
-                                        case 7: cells.item(j).innerHTML = updationDetails['updated_by'];
-                                                break;
+                                        // This value is removed from the table now.
+                                        /*case 7: cells.item(j).innerHTML = updationDetails['updated_by']; 
+                                                break;*/
                                     }
                                 }
                                 break; // once the matching row index is found, break 

@@ -80,7 +80,9 @@
                                     <h3>Edit Question</h3>
                                     <input type="text" name="edit_question_tags" id="edit_question_tags" class="form-control" autocomplete="off" placeholder="Add comma separated tags">
                                     <br>
-                                    <textarea id="question-to-edit"></textarea>
+                                    <div class="form-group shadow-textarea-mine">
+                                        <textarea id="question-to-edit" class="form-control z-depth-1-mine" rows="5" placeholder="Write your question..."></textarea>
+                                    </div>
                                     <div id="question-to-edit-error" class="text-danger hidden">Cannot submit empty Post!</div>
                                     <br>
                                     <button name="update-question" id="update-question" class="btn btn-outline btn-info">Update Post</button>

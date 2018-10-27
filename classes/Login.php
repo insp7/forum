@@ -11,6 +11,7 @@
 	 * 
 	 * @package forum
 	 * @subpackage classes
+	 * @author insp7
 	 * @access public
 	 */
 	class Login {
@@ -27,18 +28,18 @@
 			$this->connection = $database->getConnection();
 		}
 
-		/* Without using prepared statements
-		public function validateLogin($email, $password){
-			$sql = "SELECT * FROM users WHERE user_email = '$email' AND user_password = '$password'";
-			$result_set = $this->connection->query($sql);
-			$num_rows = mysqli_num_rows($result_set); // Returns the number of rows in the result_set
+		// Without using prepared statements
+		// public function validateLogin($email, $password) {
+		// $sql = "SELECT * FROM users WHERE user_email = '$email' AND user_password = '$password'";
+		// 	$result_set = $this->connection->query($sql);
+		// 	$num_rows = mysqli_num_rows($result_set); // Returns the number of rows in the result_set
 
-			if($num_rows > 0) { 
-				return true;
-			}else {
-				return false;
-			}
-		}*/
+		// 	if($num_rows > 0) { 
+		// 		return true;
+		// 	} else {
+		// 		return false;
+		// 	}
+		// }
 
 		/**
 		 * Function to get all details of the user specified by $email.
@@ -70,7 +71,7 @@
 			$preparedStatement = $this->connection->prepare($sql);
 			$preparedStatement->bind_param("ss", $email, $password);
 			$preparedStatement->execute();
-			$preparedStatement->store_result(); 
+			$preparedStatement->store_result(); // php 7 method
 			
 			if($preparedStatement->num_rows > 0) { 
 				return true;

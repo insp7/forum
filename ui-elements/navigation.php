@@ -13,7 +13,8 @@
 
             <ul class="nav navbar-top-links navbar-right">
                     <?php
-                        // print_r($_SESSION);
+                        // FOR TESTING PURPOSES
+                        print_r($_SESSION);
                     ?>
                     <button style="background: none; color: inherit; border: none; padding: 0; font: inherit; outline: inherit; padding-left: 22px; margin-top:14px; margin-right: 10px;" onclick="logoutButtonClicked(event);">
                     <i class="fa fa-sign-out fa-fw"></i> Logout</button>

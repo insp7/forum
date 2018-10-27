@@ -9,8 +9,6 @@
     if(!isset($_SESSION['user_id'])) { // if a user is not logged in 
         header("Location: access-denied.html");
     }
-
-    // require("classes/Database.php"); 
 ?>
 
 <!-- HEADER -->

@@ -14,7 +14,8 @@
 	 * 
 	 * @package forum
 	 * @subpackage classes
-	 * @access public 
+	 * @author insp7
+	 * @access public
 	 */
 	class PostVotes {
 		private $connection;

@@ -44,9 +44,6 @@
     <!-- Bootstrap Core CSS -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="assets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
@@ -108,7 +105,7 @@
     </div>
     <?php
         // FOR TESTING PURPOSES
-        // print_r($_SESSION);
+        print_r($_SESSION);
     ?>
 
     <!-- FOOTER -->
@@ -117,9 +114,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="assets/vendor/metisMenu/metisMenu.min.js"></script>
         
     <!-- Custom Theme JavaScript -->
     <script src="assets/dist/js/sb-admin-2.js"></script>

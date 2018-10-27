@@ -12,6 +12,7 @@
   "author": "aniket-konkar <inspiration601@gmail.com> (https://github.com/insp7/forum)",
   "license": "ISC",
   "dependencies": {
+    "autosize": "^4.0.2",
     "sweetalert2": "^7.28.5"
   }
 }

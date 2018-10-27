@@ -78,8 +78,8 @@ function postQuestion(askedQuestion, questionTags) {
 		if(this.responseText === "true") {
             // SET TO BLANK
             document.getElementById("question_tags").value = "";
-            $('#askedQuestion').froalaEditor('html.set' , '');
-            
+            document.getElementById("askedQuestion").value = "";
+
             /* ------- SET TOASTR OPTIONS ------- */
             toastr.options = {
                 "closeButton": true,
@@ -518,7 +518,7 @@ function editPostClicked(event, post_id, table_id, row) {
 
         // SET VALUES 
         document.getElementById("edit_question_tags").value = postDetails['post_tags'];
-        $('#question-to-edit').froalaEditor('html.set', postDetails['post_content']);
+        document.getElementById("question-to-edit").value = postDetails['post_content'];
 
         // When the update-post button is clicked, update the data using ajax 
         $('#update-question').on("click", function(event) {
@@ -529,12 +529,12 @@ function editPostClicked(event, post_id, table_id, row) {
                 document.getElementById("question-to-edit-error").classList.add("hidden");
 
             // Check if the admin/user has submitted blank 
-            if($('#question-to-edit').froalaEditor('html.get') === "") {
+            if($('#question-to-edit').val() === "") {
                 document.getElementById("question-to-edit-error").classList.remove("hidden");
             } else {
                 // GET THE UPDATED VALUES
                 postDetails['post_tags'] = document.getElementById("edit_question_tags").value;
-                postDetails['post_content'] = $('#question-to-edit').froalaEditor('html.get');
+                postDetails['post_content'] = $('#question-to-edit').val();
 
                 myRequest.onload = function() { // RESPONSE
                     var response = this.responseText.split("`&`");
@@ -614,23 +614,6 @@ function editPostClicked(event, post_id, table_id, row) {
 /************************************************************************************************/
 
 $(document).ready(function() {
-    /*-------------------- INITIALIZE THE FROALA EDITOR --------------------*/
-    // For asking Question
-    $('#askedQuestion').froalaEditor({
-    	toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
-    					'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
-        enter: $.FroalaEditor.ENTER_DIV,
-        tabSpaces: 4
-    });
-
-    // For editing the question
-    $('#question-to-edit').froalaEditor({
-        toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'insertLink', 
-                        'insertImage', 'insertVideo', 'selectAll', 'clearFormatting', 'print', 'undo', 'redo'],
-        enter: $.FroalaEditor.ENTER_DIV,
-        tabSpaces: 4
-    });
-
     /*-------------------------------------------------------------------------------------------------*/
     /*---------------------- REGISTER FORM VALIDATIONS USING jQuery.validate.js -----------------------*/
     /*-------------------------------------------------------------------------------------------------*/
@@ -787,4 +770,8 @@ $(document).ready(function() {
 
     /* Tooltip */
     $('[data-toggle="tooltip"]').tooltip(); 
+
+    /* Autosize for auto incrementing the height of the textarea */
+    // A small, stand-alone script to automatically adjust textarea height.
+    autosize($('textarea'));
 });

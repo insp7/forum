@@ -12,7 +12,8 @@
 	 * on the data-table 'roles'
 	 * 
 	 * @package forum
-	 * @subpackage classes 
+	 * @subpackage classes
+	 * @author insp7 
 	 * @access public
 	 */
 	class Roles {

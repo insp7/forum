@@ -16,6 +16,7 @@
      * 
      * @package forum
      * @subpackage classes
+     * @author insp7
      * @access public
      */
     class Database {
@@ -48,7 +49,7 @@
         public function connectDB() {
             $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
-            if(mysqli_connect_error()){ // if connection not successful
+            if(mysqli_connect_error()) { // if connection not successful
                 die("Connection Failed : ".mysqli_error());
             }
 

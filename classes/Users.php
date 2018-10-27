@@ -13,6 +13,7 @@
 	 * 
 	 * @package forum
 	 * @subpackage classes
+	 * @author insp7
 	 * @access public
 	 */
 	class Users {

@@ -16,7 +16,7 @@
      * 
      * @package forum
      * @subpackage classes
-     * @author insp7
+     * @author inspiration7
      * @access public
      */
     class Database {

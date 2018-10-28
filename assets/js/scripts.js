@@ -740,9 +740,21 @@ $(document).ready(function() {
                 /*------------------------ MAIN CODE TO POST COMMENT USING AJAX(XMLHttpRequest) ------------------------*/
                 var myRequest = new XMLHttpRequest();
 
+                /*!
+                 * Sanitize and encode all HTML in a user-submitted string
+                 * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+                 * @param  {String} str  The user-submitted string
+                 * @return {String} str  The sanitized string
+                 */
+                var sanitizeHTML = function(str) {
+                    var temp = document.createElement('div');
+                    temp.textContent = str;
+                    return temp.innerHTML;
+                };
+
                 function addComment(user_name, comment_created_at) {
                     var div = document.createElement('div');
-                    div.innerHTML = '<div class="well well-sm"><div style="font-size: 16px; font-family: \'Cantora One\';">'+user_name+'</div><div style="font-size: 12px;">answered on '+comment_created_at+'</div><h4></h4><p>'+comment_content+'</p></div>';
+                    div.innerHTML = '<div class="well well-sm"><div style="font-size: 16px; font-family: \'Cantora One\';">'+user_name+'</div><div style="font-size: 12px;">answered on '+comment_created_at+'</div><h4></h4><p>'+sanitizeHTML(comment_content)+'</p></div>';
                     document.getElementById('comment_posted_using_ajax').append(div);
                 }
 

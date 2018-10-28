@@ -68,6 +68,7 @@
 		 */
 		public function validateLogin($email, $password) { // using preparedStatements
 			$sql = "SELECT * FROM users WHERE user_email = ? AND user_password = ?";
+			$password = htmlspecialchars($password);
 			$preparedStatement = $this->connection->prepare($sql);
 			$preparedStatement->bind_param("ss", $email, $password);
 			$preparedStatement->execute();

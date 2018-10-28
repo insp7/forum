@@ -60,6 +60,8 @@
 			$user_id = $_SESSION['user_id'];
 			$date = date('Y-m-d H:i:s');
 			$post_points = 0; // Default post_points
+			$question = htmlspecialchars($question); // For preventing the use of Tags in the input(XSS Prevention)
+			$question_tags = htmlspecialchars($question_tags);
 
 			$sql = "INSERT INTO posts(post_content, post_tags, post_user_id, created_at, post_points) VALUES(?, ?, ?, ?, ?)";
 			$preparedStatement = $this->connection->prepare($sql);

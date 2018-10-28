@@ -45,9 +45,9 @@
 			/* Code to create new user */
 			$first_name = $_POST['firstname'];
 	        $last_name = $_POST['lastname'];
-	        $user_name = $_POST['username'];
+	        $user_name = htmlspecialchars($_POST['username']); // to prevent XSS
 	        $email = $_POST['email'];
-	        $password = $_POST['password'];
+	        $password = htmlspecialchars($_POST['password']); // to prevent XSS
 	        $user_branch = $_POST['user_branch'];
 	        $user_dob = $_POST['user_dob'];
 	        

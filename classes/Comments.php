@@ -65,7 +65,8 @@
 		public function insertComment($comment_post_id, $comment_content) { 
 			$comment_author = $_SESSION['user_name']; // because the currently logged in user is the author of comments he posts.
 			$comment_author_id = $_SESSION['user_id'];
-			$date = date('Y-m-d H:i:s'); 
+			$date = date('Y-m-d H:i:s');
+			$comment_content = htmlspecialchars($comment_content); 
 
 			$sql = "INSERT INTO comments(comment_post_id, comment_author, comment_author_id, comment_content, created_at) VALUES(?, ?, ?, ?, ?)";
 			$preparedStatement = $this->connection->prepare($sql);

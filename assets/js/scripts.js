@@ -42,7 +42,7 @@ function authenticateInfo(email, password) {
 		}		
 	};
 
-	myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+	myRequest.open("POST", "manage-ajax.php", true); // Added relative path again
 	myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	myRequest.send("login-email="+email+"&login-password="+password+"&manage=login");
 }
@@ -105,7 +105,7 @@ function postQuestion(askedQuestion, questionTags) {
 	};
 
 	//https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
-	myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+	myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
 	myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	myRequest.send("post_content="+askedQuestion+"&post_tags="+questionTags+"&manage=posting_question");
 }
@@ -191,7 +191,7 @@ function register() {
         toastr.success("Get Started, ain't no need to wait!", "User Created"); // Show toastr
     };
 
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+    myRequest.open("POST", "manage-ajax.php", true); // Added relative path again
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("firstname="+firstname+"&lastname="+lastname+"&username="+username+"&email="+email+"&password="+password+"&user_branch="+user_branch+"&user_dob="+user_dob+"&manage=creating_user");
 } // END OF REGISTER FUNCTION
@@ -219,7 +219,7 @@ function upvotePostClicked(event, post_id, upvoteBtn) {
             }
         }
 
-        myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+        myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
         myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         myRequest.send("post_id="+post_id+"&manage=upvote_post");
     } else { 
@@ -240,7 +240,7 @@ function upvotePostClicked(event, post_id, upvoteBtn) {
             }
         }
 
-        myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+        myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
         myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         myRequest.send("post_id="+post_id+"&manage=cancel_post_upvote");
     }
@@ -291,7 +291,7 @@ function deleteCommentClicked(event, comment_id, row) {
                 }
             };
             
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("comment_id="+comment_id+"&manage=delete_comment");
         }
@@ -340,7 +340,7 @@ function deleteNotificationClicked(event, notification_id, row) {
                 }
             };
             
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("notification_id="+notification_id+"&manage=delete_notification");
         }
@@ -387,7 +387,7 @@ function deletePostClicked(event, post_id, row) {
                 }
             };
             
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("post_id="+post_id+"&manage=delete_post");
         }
@@ -434,7 +434,7 @@ function deleteRoleClicked(event, role_id, row) {
                 }
             };
             
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("role_id="+role_id+"&manage=delete_role");
         }
@@ -481,7 +481,7 @@ function deleteUserClicked(event, user_id, row) {
                 }
             };
             
-            myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true);
+            myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
             myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             myRequest.send("user_id="+user_id+"&manage=delete_user");
         }
@@ -596,14 +596,14 @@ function editPostClicked(event, post_id, table_id, row) {
                     });
                 };
 
-                myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+                myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
                 myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 myRequest.send("post_id="+post_id+"&post_tags="+postDetails['post_tags']+"&post_content="+postDetails['post_content']+"&manage=update_post_clicked");
             }
         });
     };
 
-    myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+    myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
     myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     myRequest.send("post_id="+post_id+"&manage=edit_post_clicked");
 } // END OF editPostClicked() FUNCTION
@@ -756,7 +756,7 @@ $(document).ready(function() {
                     }
                 };
 
-                myRequest.open("POST", "http://localhost/forum/manage-ajax.php", true); 
+                myRequest.open("POST", "../manage-ajax.php", true); // Added relative path again
                 myRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 myRequest.send("post_id="+post_id+"&comment_content="+comment_content+"&manage=posting_comment"); 
             }

@@ -22,9 +22,9 @@
             $_SESSION['user_role'] = $user_role;
 
             if($user_role === "admin") {
-                header("Location: http://localhost/forum/admin/index.php"); // Added Absolute Path
+                header("Location: admin/index.php"); // Added relative path again
             } else if($user_role === "user") {
-                header("Location: http://localhost/forum/index.php"); // Added Absolute Path
+                header("Location: index.php"); // Added relative path again
             }
         }
     }
@@ -42,17 +42,13 @@
     <title>Login or Signup</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
-    <!-- Link to Toastr.css -->
-    <link rel="stylesheet" href="assets/convertedFromCDN/css/toastr.min.css">
+    <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/myStyles.css">
@@ -94,7 +90,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button name="login" class="btn btn-outline btn-success-mine" onclick="loginButtonClicked(event);"><span class="fa fa-sign-in"></span> Login</button>
-                                    <a href="register.php" name="sign_up" class="btn btn-outline btn-success"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                                    <a href="register.php" name="sign_up" class="btn btn-outline btn-success"><i class="fa fa-user-plus"></i> Sign Up</a>
                                 </div>
                             </fieldset>
                         </form>
@@ -110,17 +106,13 @@
 
     <!-- FOOTER -->
     <!-- jQuery -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         
     <!-- Custom Theme JavaScript -->
     <script src="assets/dist/js/sb-admin-2.js"></script>
-
-    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
-    <!-- Link to toastr.js -->
-    <script type="text/javascript" src="assets/convertedFromCDN/js/toastr.min.js"></script>
 
     <!-- My Script -->
     <script src="assets/js/scripts.js"></script>

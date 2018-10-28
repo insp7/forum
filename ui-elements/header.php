@@ -19,26 +19,26 @@
     <title>Simple Forum</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font-awesome CSS -->
+    <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
+    <!-- Link to Toastr.css -->
+    <link rel="stylesheet" href="../node_modules/toastr/build/toastr.min.css">
+    
+    <!-- SweetAlert 2.0 CSS -->
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 
     <!-- Custom CSS -->
     <link href="../assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
-    <!-- Link to Toastr.css -->
-    <link rel="stylesheet" href="../assets/convertedFromCDN/css/toastr.min.css">
+    <!-- Cantora One Font -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Cantora One'>
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/myStyles.css">
-    
-    <!-- Cantora One Font -->
-    <link href='https://fonts.googleapis.com/css?family=Cantora One' rel='stylesheet'>
-    
-    <!-- SweetAlert 2.0 CSS -->
-    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

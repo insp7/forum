@@ -19,24 +19,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome - Home Page</title>
-    
-    <!-- Include Editor style. -->
-    <link href="assets/convertedFromCDN/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/convertedFromCDN/css/froala_style.min.css" rel="stylesheet" type="text/css" />       
+    <title>Welcome - Home Page</title>  
 
     <!-- Bootstrap Core CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="assets/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <!-- Font-awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
+    
+    <!-- My Styles -->
     <link rel="stylesheet" type="text/css" href="assets/css/myStyles.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -75,23 +69,13 @@
     
     <!-- FOOTER -->
     <!-- jQuery -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    
-    <!-- jQuery Validation --> <!-- Remove this later, as its not needed -->
-    <script src="assets/convertedFromCDN/js/jquery.validate.min.js"></script>
-    <script src="assets/convertedFromCDN/js/additional-methods.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="assets/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="assets/dist/js/sb-admin-2.js"></script>
-
-    <!-- Include Editor JS files. -->
-    <script type="text/javascript" src="assets/convertedFromCDN/js/froala_editor.pkgd.min.js"></script>
 
     <!-- My Script -->
     <script type="text/javascript" src="assets/js/scripts.js"></script>

@@ -12,17 +12,17 @@
     <title>Sign up</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
     <!-- Link to Toastr.css -->
-    <link rel="stylesheet" href="assets/convertedFromCDN/css/toastr.min.css">
+    <link rel="stylesheet" href="node_modules/toastr/build/toastr.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,7 +76,7 @@
                                     <p> 
                                         &emsp;Already A member?&ensp;
                                         <a href="login.php" name="login" class="btn btn-primary"><span class="fa fa-sign-in"></span> Login</a>
-                                        <button name="register" id="register" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> Sign Up</button>
+                                        <button name="register" id="register" class="btn btn-success"><span class="fa fa-user-plus"></span> Sign Up</button>
                                     </p>
                                 </div>
                             </fieldset>
@@ -89,28 +89,24 @@
     
     <!-- FOOTER -->
     <!-- jQuery -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 
-    <!-- jquery Validation -->
-    <script src="assets/convertedFromCDN/js/jquery.validate.min.js"></script>
-    <script src="assets/convertedFromCDN/js/additional-methods.min.js"></script>
+    <!-- jQuery Validation -->
+    <script type="text/javascript" src="node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery-validation/dist/additional-methods.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="assets/dist/js/sb-admin-2.js"></script>
-    
-    <!-- Remember to remove this, bcoz its useless :P  -->
-    <!-- Include Editor JS files. -->
-    <script type="text/javascript" src="assets/convertedFromCDN/js/froala_editor.pkgd.min.js"></script>
-    
     <!-- toastr is a Javascript library for Gnome / Growl type non-blocking notifications. jQuery is required. -->
     <!-- Link to toastr.js -->
-    <script type="text/javascript" src="assets/convertedFromCDN/js/toastr.min.js"></script>
+    <script type="text/javascript" src="node_modules/toastr/build/toastr.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src="assets/dist/js/sb-admin-2.js"></script>
     
     <!-- My Script -->
-    <script src="assets/js/scripts.js"></script>
+    <script type="text/javascript" src="assets/js/scripts.js"></script>
 
 </body>
 </html>

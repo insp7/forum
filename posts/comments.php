@@ -50,7 +50,6 @@
                             </div>
                             <div class="panel-body">
                                 <?php echo $post_content; ?>
-                                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true" style="float: right; color: #007bff;  letter-spacing:.25px;"> <?php echo $post_points; ?></i>
                             </div>
                         </div>
                 <?php 

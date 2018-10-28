@@ -145,6 +145,9 @@ table .hover-mine tr:hover {
     font-family: 'Cantora One'; /* Google font */
 }
 
+.background-white-mine {
+    background: #fff;
+}
 
 /*
     COLORS: 

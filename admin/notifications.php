@@ -7,7 +7,7 @@
         require_once("../classes/Notifications.php");
 
         if($_SESSION['user_role'] === "user") { // if a user is logged in, deny him the admin access
-            header("Location: http://localhost/forum/admin-access-denied.html"); // Added Absolute Path
+            header("Location: ../admin-access-denied.html"); // Added Relative path again
         }
     ?>
 

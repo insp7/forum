@@ -13,6 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "autosize": "^4.0.2",
-    "sweetalert2": "^7.28.5"
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "jquery-validation": "^1.18.0",
+    "popper.js": "^1.14.4",
+    "sweetalert2": "^7.28.5",
+    "toastr": "^2.1.4"
   }
 }

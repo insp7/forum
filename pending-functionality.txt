@@ -39,5 +39,6 @@ Other things to do:
 	6) Final documentation and commenting the code where necessary(for all methods, classes and whereever required)
 
 Side notes: 
-	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly.
-	2) To add a suitable license.
+	1) Remove the node_modules folder from the git repository after the project is completed and package.json file is setup properly. : DONE
+
+	TEST THE ENTIRE WEBSITE ONE FINAL TIME!

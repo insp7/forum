@@ -7,7 +7,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">FORUM</a>
+                <?php 
+                    if($_SESSION['user_role'] === "admin") {
+                        echo '<a class="navbar-brand" href="http://localhost/forum/admin/index.php">FORUM</a>';
+                    } else {
+                        echo '<a class="navbar-brand" href="http://localhost/forum/index.php">FORUM</a>';
+                    }
+                ?>
             </div>
             <!-- /.navbar-header -->
 
@@ -22,7 +28,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar sidebar-mine" role="navigation" style="background: #fff;">
+            <div class="navbar-default sidebar sidebar-mine background-white-mine" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search nav-link-margin">

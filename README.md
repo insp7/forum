@@ -49,3 +49,17 @@ Latest updated copy of SQL database.
 
 #### admin-access-denied.html & access-denied.html: 
 The access-denied pages designed for specific situations.
+
+# Installation Notes 
+1. Open cmd in the project root folder & Run **'npm install'.**
+2. Start Xampp control panel; **start Apache & MySQL server.**
+3. Open browser, go to **'localhost/phpmyadmin'.**
+4. **Create a new user** Click 'User Accounts' > 'Add user account', set username, select hostname as 'local', set password, click 'check all' for 'Global Privileges' & click 'Go'. Now a new user is created. This step is optional, you can use 'root'; however, its recommended that you create a custom user for yourself.
+5. Click *'new'* to Create a new databse and name it 'forumdb'(Or set any name as per your preference).
+6. Click the 'Import' tab & import the 'forumdb.sql' file. **Make sure that the newly created database is selected.** Now all the schema for 'forumdb' is imported into this database.
+7. Open file **'/classes/Database.php'**; In the constructor, set the following values: *$this->username* = **your_username_or_root**, *$this->password* = **your_password_if_any_else_keep_this_blank**, *$this->database* = **your_database_name**. 
+8. (If you haven't already done this) Quickly move this entire project folder into **'C:\xampp\htdocs'**(By default xampp is installed in C drive, if thats not the case, move to *'your_drive':\xampp\htdocs*).
+9. Open the browser, and go to 'localhost/**forum**/index.php'. (Note: Here, **forum** is the assumed name for the project directory); An *'access-denied.html'* page should be displayed; Thats because, you need to login/register first.
+10. To register newly, go to *'localhost/forum/register.php'*; Enter the necessary details, and once you're done with regisetering, you're good to go! Return to the login page & login with the currently created user!
+11. To login as an **admin**, look for the details(useremail & password) of the existing users from the database relation **'users'.**
+12. *Welp, that's that! Now go have a look at the website for yourself!*
